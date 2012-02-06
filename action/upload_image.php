@@ -39,9 +39,9 @@ if (!move_uploaded_file($_FILES['imgfile']['tmp_name'], $imgfile_b)) {
             
             $flnm = date(y).date(z).date(H).date(i).'.';
             
-             $new_imgfile = $document_root."/images/". $flnm.$filetype;
+             $new_imgfile = $document_root."/images/proforma". $flnm.$filetype;
              
-             $url = "http://".$server."/images/". $flnm.$filetype;
+             $url = "http://".$server."/images/proforma". $flnm.$filetype;
              
              $url = quote_smart($url);
              
