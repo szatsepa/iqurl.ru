@@ -37,7 +37,7 @@ if (!move_uploaded_file($_FILES['imgfile']['tmp_name'], $imgfile_b)) {
            
         } else {
             
-            $flnm = date(y).date(z).date(H).date(i).'.';
+            $flnm = date(Y).date(m).date(d).date(H).date(i).'.';
             
              $new_imgfile = $document_root."/images/proforma". $flnm.$filetype;
              
