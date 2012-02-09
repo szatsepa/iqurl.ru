@@ -47,8 +47,20 @@ if(isset($_SESSION[auth])){
             </td>
             <td>
               <form action="index.php?act=arch" method="post">
-                  <input type="submit" value="&nbsp;Мой&nbsp;&nbsp;архив&nbsp;" class="zakaz" />
+                  <input type="submit" value="Архив изображений" class="zakaz" />
              </form>
+               
+            </td>
+            <td>
+              <form action="index.php?act=alink" method="post">
+                  <input type="submit" value="Архив ссылок" class="zakaz" />
+             </form>
+               
+            </td>
+            <td>
+                 <form action="index.php?act=snd" method="post">
+                     <input type="submit" value="&nbsp;Архив&nbsp;звуков&nbsp;" class="zakaz" />
+                </form>
             </td>
         </tr>
     </table>

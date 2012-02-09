@@ -1,7 +1,7 @@
 <?php
 
 /*
- * created by arcady.1254@gmail.com 4/2/2012
+ * created by arcady.1254@gmail.com 8/2/2012
  */
     $user_id = intval($_SESSION[id]);
 
@@ -12,11 +12,10 @@
     $id = intval($attributes[id]);
     
     $name_id = intval($attributes[name_id]);
-    
-    $query = "UPDATE presentation SET p_url = (SELECT id FROM images WHERE name = $url), time = $time WHERE id = $id";
+           
+    $query = "UPDATE presentation SET sound = (SELECT id FROM sounds WHERE name = $url) WHERE id = $id";
 
     $result = mysql_query($query) or die($query);
-    
-    
+       
     header("location:index.php?act=red&name_id=$name_id");
 ?>

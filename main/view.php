@@ -11,6 +11,9 @@ if(isset ($attributes[frame]))$key = intval($attributes[frame]);
 
 if($key == count($presentation_array))$key = 0;
 
+$this_sound = "http://".$_SERVER[SERVER_NAME]."/sound/".$sound_array[$key][sound];
+
+echo "$this_sound<br/>";
 ?>
 <script>
 var min = 0;
@@ -37,7 +40,19 @@ document.location = "index.php?act=view&frame=<?php echo ($key+1);?>&name_id=<?p
 timerid = setInterval(timer,1000); /* запускаем таймер */
 
 </script>
-
+<object width="290" height="24" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0">
+    <param name="allowScriptAccess" value="sameDomain" />
+    <param name="movie" value="http://www.yapfiles.ru/files/148503/player.swf" />
+    <param name="wmode" value="opaque" />
+    <param name="bgcolor" value="#FFFFFF" />
+    <param name="scale" value="showall" />
+    <param name="quality" value="autohigh" />
+    <param name="align" value="l" />
+    <param name="FlashVars" value="autostart=yes&loop=no&soundFile=<?php echo $this_sound;?>" />
+    <embed width="290" height="24" swliveconnect="default" src="http://www.yapfiles.ru/files/148503/player.swf" wmode="opaque" bgcolor="#FFFFFF" scale="showall" quality="autohigh" loop="false" menu="false" play="false" name="" base="" salign="tl" FlashVars="autostart=yes&loop=no&soundFile=<?php echo $this_sound;?>" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+    </embed>
+</object>
+<div>
      <iframe src="<?php echo $presentation_array[$key][p_url];?>" width="100%" height="1050" align="center">
     Ваш браузер не поддерживает плавающие фреймы!
  </iframe>

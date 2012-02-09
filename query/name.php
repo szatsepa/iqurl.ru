@@ -6,7 +6,7 @@
 
 $p_id = intval($attributes[name_id]);
 
-$query = "SELECT * FROM names WHERE id = $p_id";
+$query = "SELECT * FROM names WHERE id = $p_id ORDER BY id";
 
 $result = mysql_query($query) or die($query);
 
