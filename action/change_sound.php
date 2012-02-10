@@ -19,7 +19,6 @@ $new_soundfile = $document_root ."/sound/". $flnm;
 
 $del_file = $document_root."/sound/".$name;
 
-//echo "to sho dell $del_file<br/>";
 if (!move_uploaded_file($_FILES['soundfile']['tmp_name'], $new_soundfile)) {
   
     ?>

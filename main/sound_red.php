@@ -5,7 +5,7 @@
  */
 $this_sound = "http://".$_SERVER[SERVER_NAME]."/sound/".$sound[name];
 
-//echo $this_sound;
+$comment = str_replace('"', "'", $sound[comment]);
 
 ?>
 <br/>
@@ -42,13 +42,34 @@ $this_sound = "http://".$_SERVER[SERVER_NAME]."/sound/".$sound[name];
        
     </td>
     <td colspan="2">
-        <input type="submit" value="Заменить аудиофайл"/>&nbsp;&nbsp;
+        <input type="submit" value="Заменить&nbsp;&nbsp; аудиофайл"/>&nbsp;&nbsp;
     </td>
 </form>
 </tr>
 <tr>
     <td colspan="3">
         <small>Формат загружаемого файла должен быть исключительно mp3</small> 
+    </td>
+</tr>
+ <tr>
+<form action="index.php?act=chcoms" method="post"> 
+    <td>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+    </td>
+    <td>
+        
+        <input type="hidden" name="id" value="<?php echo $sound[id];?>"/>
+        <input name="comment" size="62" type="text" value="<?php echo $comment;?>" required/>
+       
+    </td>
+    <td colspan="2">
+        <input type="submit" value="Изменить комментарий"/>&nbsp;&nbsp;
+    </td>
+</form>
+</tr>
+<tr>
+    <td colspan="3">
+        <small>Комментарий к звуковому файлу.</small> 
     </td>
 </tr>
     </table>

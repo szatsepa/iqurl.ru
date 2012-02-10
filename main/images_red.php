@@ -14,7 +14,7 @@
     <br/>
 </div>
 <div class="img_red">
-    <table>
+    <table border="0">
         <tr>
 <form enctype="multipart/form-data" action="index.php?act=chgi" method="post">
     <td>
@@ -35,6 +35,27 @@
 <tr>
     <td colspan="3">
         <small>Размер загружаемого файла не должен превышать 1.2МБ</small> 
+    </td>
+</tr>
+        <tr>
+<form action="index.php?act=chcomi" method="post">
+    <td>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+    </td>
+    <td>
+        
+        <input type="hidden" name="id" value="<?php echo $image[id];?>"/>
+        <input name="comment" size="62" type="text" value="<?php echo $image[comment];?>" required/>
+       
+    </td>
+    <td colspan="2">
+        <input type="submit" value="Изменить комментарий"/>&nbsp;&nbsp;
+    </td>
+</form>
+</tr>
+<tr>
+    <td colspan="3">
+        <small>Комментарий к изображению.</small> 
     </td>
 </tr>
     </table>

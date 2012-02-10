@@ -17,5 +17,6 @@ header('Content-Type: text/html; charset=utf-8');
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen, projection" />
         <script type="text/javascript" src="/js/AC_Run.js"></script>
+        <script type="text/javascript" src="/js/scripts.js"></script>
  </head>
     <body onload="">

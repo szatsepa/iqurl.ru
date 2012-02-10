@@ -23,8 +23,10 @@
         foreach ($tmp_arr as $value) {
             
             $name = $value[name];
+            
             $len = strlen($value[name]);
             
+            $comment = str_replace('"', "'", $value[comment]);
          
           ?>
         <tr>
@@ -36,17 +38,14 @@
             <td>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
-            
-<!--            <td>
-                
-            </td>-->
+
             <td align="left" colspan="2">
                 <form action="index.php?act=sred" method="post">
-                <input type="text" size="64" name="url" value="<?php echo $name;?>" onclick="this.select();"/>
+                <input id="snd_<?php echo $value[id];?>" type="text" size="64" name="url" value="<?php echo $comment;?>" onclick="javascript:attachData('snd_<?php echo $value[id];?>','<?php echo $value[name];?>');"/>
                     <input type="hidden" name="id" value="<?php echo $value[id];?>"/>
                     <input type="submit" value="Редактировать"/>
-                    <input type="submit" value="Удалить" onclick="document.location='index.php?act=sdel&id=<?php echo $value[id];?>&action=<?php echo $attributes[act];?>'"/>
-                </form>
+                    <input type="submit" value="Удалить" onclick="document.location='index.php?act=sdel&id=<?php echo $value[id];?>&action=<?php echo $attributes[act];?>'"/>   
+                </form> 
 <!--            </td>
            
             <td align="left">-->
@@ -63,3 +62,13 @@
         ?>
     </table>
 </div>
+<script language="JavaScript">
+function attachData(cod, str) {
+    
+    var obj = document.getElementById(cod);
+	
+    alert(obj.value+'\n'+str);
+	
+return;
+}
+</script>

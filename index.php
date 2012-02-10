@@ -17,7 +17,7 @@ if(isset($attributes[di]) && !isset ($_SESSION[auth])){
 }
 //print_r($_SESSION);
 //echo "<br/>";
-//print_r($attributes); 
+print_r($attributes); 
 //echo "<br/>";
 //print_r($_SERVER); 
 
@@ -30,7 +30,6 @@ switch ($attributes[act]) {
     
     case "look":
         $title = "Презентация";
-        
         include 'main/header.php';
         include 'main/selector.php';
         break;
@@ -89,6 +88,14 @@ switch ($attributes[act]) {
         include 'main/sound_red.php';
         break;
     
+    case 'lred':
+        $title = "Редактор ссылок";
+        include 'query/my_link.php'; 
+        include 'main/header.php';
+        include 'main/selector.php';
+        include 'main/link_red.php';
+        break;
+    
     case 'alink':
         $title = "Архив ссылок";
         include 'query/my_links.php';
@@ -105,9 +112,29 @@ switch ($attributes[act]) {
         include 'main/my_sounds.php';
         break;
     
+    case 'select':
+        $title = "Добавить элемент.";
+        include 'query/presentations.php'; 
+        include 'main/header.php';
+        include 'main/selector.php';
+        include 'main/add_element.php';
+        break;
+    
     case 'chgi': 
         include 'main/header.php';
         include 'action/change_image.php';
+        break;
+    
+    case 'chcomi':
+        include 'action/change_comment_img.php';
+        break;
+    
+    case 'chcoml':
+        include 'action/change_comment_link.php';
+        break;
+    
+    case 'chcoms': 
+        include 'action/change_comment_sound.php';
         break;
     
      case 'chgsnd': 

@@ -30,15 +30,8 @@
         
         foreach ($tmp_arr as $value) {
             $name = $value[name];
-          if($attributes[act] == "arch"){  
-            $len = strlen($value[name]);
-            
-            if($len < 48){
-                for($i=$len;$i<48;$i++){
-                    $name .= "&nbsp;";
-                }
-            }
-          }
+          
+            $comment = str_replace('"', "'", $value[comment]);
           ?>
         <tr>
             <td colspan="4">
@@ -51,7 +44,7 @@
             </td>
             <td>
                 <form action="index.php?act=lred" method="post">
-                <input type="text" size="64" name="url" value="<?php echo $name;?>" onclick="this.select();"/>
+                <input id="link_<?php echo $value[id];?>"type="text" size="64" name="url" value="<?php echo $comment;?>" onclick="javascript:attachData('link_<?php echo $value[id];?>','<?php echo $value[name];?>');"/>
             </td>
             <td align="left"> 
                 
@@ -83,7 +76,8 @@
                 <form action="index.php?act=alnk" method="post">
                     <input type="hidden" name="user_id" value="<?php echo $_SESSION[id];?>"/>
                     <input type="text" required size="64" name="url" value=""/>
-<!--                    <input type="text" required size="4" name="times" value=""/>&nbsp;sec.-->
+                    <p><small>Добавте комментарий.</small></p>
+                    <input type="text" required size="64" name="comment" value=""/>
                     <input type="submit" value="&nbsp;Добавить&nbsp; &nbsp;адрес&nbsp;"/>
                 </form>
                 </p>
@@ -94,3 +88,14 @@
         </tr>
     </table>
 </div>
+<script language="javascript">
+function attachData(cod, str) {
+    
+    var obj = document.getElementById(cod);
+	
+    alert(obj.value+'\n'+str);
+	
+return;
+}
+
+</script>

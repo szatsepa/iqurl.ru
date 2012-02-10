@@ -12,6 +12,8 @@ $name_id = intval($attributes[name_id]);
 
 $time = intval($attributes[times]);
 
+$comment = quote_smart($attributes[comment]);
+
 $server = $_SERVER[SERVER_NAME];
 
 $size = intval($attributes[MAX_FILE_SIZE]);
@@ -32,8 +34,10 @@ if($size > $_FILES['imgfile']['size']){
     
        
 if (!move_uploaded_file($_FILES['imgfile']['tmp_name'], $imgfile_b)) {
-    
-           $javascript = "javascript:alert('Ошибка при копировании файла');";
+    ?>
+<script language="javascript">alert('Ошибка при копировании файла');</script>
+      <?php 
+//      $javascript = "javascript:alert('Ошибка при копировании файла');";
            
         } else {
             
@@ -55,7 +59,7 @@ if (!move_uploaded_file($_FILES['imgfile']['tmp_name'], $imgfile_b)) {
             // Переименуем загруженный файл
             rename ($imgfile_b, $new_imgfile);
             
-            $query = "INSERT INTO images (user_id, name, type) VALUES ($user_id, $url, $type)";
+            $query = "INSERT INTO images (user_id, name, type,comment) VALUES ($user_id, $url, $type, $comment)";
             
             $result = mysql_query($query) or die($query);
             

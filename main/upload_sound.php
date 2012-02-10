@@ -12,7 +12,7 @@
 <tr>
 
     <td>
-        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
     </td>
     <td colspan="2">
       <form enctype="multipart/form-data" action="index.php?act=usnd" method="post">  
@@ -26,7 +26,10 @@
 
 </tr>
 <tr>
-    <td colspan="3">
+    <td>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+    </td>
+    <td colspan="2">
         <small>Формат загружаемого файла должен быть исключительно</small><strong>  mp3</strong>
     </td>
 </tr>

@@ -9,6 +9,8 @@
         <?php if($attributes[act] == "arch"){
             
             $tmp_arr = $img_pres_array;
+            
+            
             ?>
          <tr>
             <td>
@@ -22,6 +24,8 @@
         }else{
             $tmp_arr = $allpres_array;
         }
+        
+        
 ?>
        
         
@@ -50,7 +54,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
             <td>
-                <a href="index.php?act=view&amp;name_id=<?php echo $value[id];?>&amp;frame=0" target="_blank"><?php echo $name;?></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="index.php?act=view&amp;name_id=<?php echo $value[id];?>&amp;frame=0" target="_blank" <?php echo $disabled;?>><?php echo $name;?></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
             <td>
                 

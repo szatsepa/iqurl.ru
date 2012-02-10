@@ -8,6 +8,8 @@ $soundfile_b   = $document_root . '/sound/' . basename($_FILES['soundfile']['nam
 
 $user_id = intval($_SESSION[id]);
 
+$comment = quote_smart($attributes[comment]);
+
 if (!move_uploaded_file($_FILES['soundfile']['tmp_name'], $soundfile_b)) {
   
     ?>
@@ -24,7 +26,7 @@ if (!move_uploaded_file($_FILES['soundfile']['tmp_name'], $soundfile_b)) {
             // Переименуем загруженный файл
            if(rename ($soundfile_b, $new_soundfile)){
             
-            $query = "INSERT INTO sounds (user_id, name) VALUES ($user_id, $url)";
+            $query = "INSERT INTO sounds (user_id, name, comment) VALUES ($user_id, $url, $comment)";
             
             $result = mysql_query($query) or die($query);
             

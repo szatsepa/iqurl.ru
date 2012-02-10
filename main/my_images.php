@@ -51,8 +51,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
             <td>
-<!--                <a href="index.php?act=arch&amp;name_id=<?php echo $value[id];?>&amp;frame=0" target="_blank"><?php echo $name;?></a> -->
-                <input type="text" size="64" name="url" value="<?php echo $name;?>" onclick="this.select();"/>
+                <input id="img_<?php echo $value[id];?>" type="text" size="64" name="url" value="<?php echo $value[comment];?>" onclick="javascript:attachData('img_<?php echo $value[id];?>','img','<?php echo $value[id];?>');"/>
             </td>
             <td align="left"> 
                 <form action="index.php?act=ired" method="post">
@@ -75,3 +74,13 @@
         ?>
     </table>
 </div>
+<script language="JavaScript"> 
+function attachData(cod, str, id) { 
+    
+    var obj = document.getElementById(cod);
+    document.write ('<form action="index.php?act=select" method="post"><input type="hidden" name="obj" value="'+str+'"/><input name="id" type="hidden" value="'+id+'"/></form>');
+    document.forms[0].submit();
+	
+return;
+}
+</script>
