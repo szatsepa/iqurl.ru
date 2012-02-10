@@ -57,7 +57,7 @@ switch ($attributes[act]) {
         $title = "Редактор";
         include 'query/name.php';
         include 'query/presentation.php';
-        include 'query/audio_presentation.php';
+//        include 'query/audio_presentation.php';
         include 'main/header.php';
         include 'main/selector.php';
         include 'main/edit_p.php'; 
@@ -118,6 +118,11 @@ switch ($attributes[act]) {
         include 'main/header.php';
         include 'main/selector.php';
         include 'main/add_element.php';
+        break;
+    
+    case 'addel':
+        include 'main/header.php';
+        include 'action/add_element.php';
         break;
     
     case 'chgi': 
