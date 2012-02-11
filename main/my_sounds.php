@@ -41,19 +41,11 @@
 
             <td align="left" colspan="2">
                 <form action="index.php?act=sred" method="post">
-                <input id="snd_<?php echo $value[id];?>" type="text" size="64" name="url" value="<?php echo $comment;?>" onclick="javascript:attachData('snd_<?php echo $value[id];?>','<?php echo $value[name];?>');"/>
+                <input id="snd_<?php echo $value[id];?>" type="text" size="64" name="url" value="<?php echo $comment;?>"/>
                     <input type="hidden" name="id" value="<?php echo $value[id];?>"/>
                     <input type="submit" value="Редактировать"/>
                     <input type="submit" value="Удалить" onclick="document.location='index.php?act=sdel&id=<?php echo $value[id];?>&action=<?php echo $attributes[act];?>'"/>   
                 </form> 
-<!--            </td>
-           
-            <td align="left">-->
-<!--                <form action="index.php?act=sdel" method="post">
-                    <input type="hidden" name="action" value="<?php echo $attributes[act];?>"/>
-                    <input type="hidden" name="id" value="<?php echo $value[id];?>"/>
-                    <input type="submit" value="Удалить"/>
-                </form>-->
             </td>
         </tr>
         

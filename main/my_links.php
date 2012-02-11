@@ -2,7 +2,7 @@
 
 /*
  * created by arcady.1254@gmail.com 9/2/2012
- */
+ */ 
 ?>
 <div>
     <table width="86%" border="0">
@@ -44,20 +44,10 @@
             </td>
             <td>
                 <form action="index.php?act=lred" method="post">
-                <input id="link_<?php echo $value[id];?>"type="text" size="64" name="url" value="<?php echo $comment;?>" onclick="javascript:attachData('link_<?php echo $value[id];?>','<?php echo $value[name];?>');"/>
-            </td>
-            <td align="left"> 
-                
+                    <input id="link_<?php echo $value[id];?>"type="text" size="64" name="url" value="<?php echo $comment;?>"/>
                     <input type="hidden" name="id" value="<?php echo $value[id];?>"/>
                     <input type="submit" value="Редактировать"/>
-                </form>
-            </td>
-           
-            <td align="left">
-                <form action="index.php?act=ldel" method="post">
-                    <input type="hidden" name="action" value="<?php echo $attributes[act];?>"/>
-                    <input type="hidden" name="id" value="<?php echo $value[id];?>"/>
-                    <input type="submit" value="Удалить"/>
+                    <input type="submit" value="Удалить" onclick="document:location='index.php?act=ldel&action=<?php echo $attributes[act];?>&id=<?php echo $value[id];?>'"/>
                 </form>
             </td>
         </tr>

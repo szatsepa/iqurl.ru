@@ -11,10 +11,12 @@
 if (!isset ($_SESSION[id])) {
     ?>
     <span class="selector2">
-        <form action="index.php?act=auth" method="post">
+        <form id="13">
             <input type="password" name="code" size="18" style='font-size:8pt;'  />
-            <input type="submit" value="&gt;&gt;" class='submit3' style='color:green' />
-        </form>
+            <input type="submit" value="Войти" class='submit3' style='color:green' onclick="javascript:userAuth('13');"/>
+           <input type="submit" value="Регистрация" class='submit3' style='color:green' onclick="javascript:userReg();"/>
+            </form> 
+         
     </span>
 <?php } else { 
     // To Do Если имя и фамилия очень длинные, то выводить только фамилию
@@ -23,7 +25,7 @@ if (!isset ($_SESSION[id])) {
 <span class="selector3">
     
 <form action='index.php?act=logout' method='post'>
-    <?php echo $user->data[name]." ". $user->data[surname];?>
+    <?php echo $user->data[name]." ". $user->data[surname];?>  
     <input type='submit' class='submit3' value='X' style='color:red'/>
 </form>
 </span>
@@ -77,3 +79,25 @@ if(isset($_SESSION[auth])){
     <br/><br/>
 <?php if ($title != '') echo "<h2>".""."</h2>"; }?>
 </div>
+<script language="javascript">
+    function userAuth(id){
+        
+        var obj = document.getElementById(id);
+        
+        var passw = obj.code.value;
+        
+        document.write ('<form action="index.php?act=auth" method="post"><input type="hidden" name="code" value="'+passw+'"/></form>');
+        document.forms[0].submit();
+        
+        return;
+        
+    }
+    function userReg(){
+        
+      
+        document.write ('<form action="index.php?act=registration" method="post"></form>');
+        document.forms[0].submit();
+        return;
+    }
+
+</script>

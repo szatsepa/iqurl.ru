@@ -36,6 +36,9 @@ $query = "INSERT INTO statistics
 
 $act_stat = mysql_query($query) or die($query);
 
-header("location:index.php?act=look");
-
+if(!isset ($_SESSION[id])){
+    header("location:index.php?act=look");
+}  else {
+    header("location:index.php?act=pres");
+} 
 ?>

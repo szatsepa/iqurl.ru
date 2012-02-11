@@ -15,12 +15,9 @@ if(isset($attributes[di]) && !isset ($_SESSION[auth])){
    $_SESSION[auth] = 1;
          
 }
-//print_r($_SESSION);
-//echo "<br/>";
-print_r($attributes); 
-//echo "<br/>";
-//print_r($_SERVER); 
 
+//print_r($attributes); 
+ 
 include 'main/connect.php';
 include 'action/quotesmart.php';
 include 'classes/classes.php';
@@ -28,8 +25,14 @@ if(isset ($_SESSION[id])) include 'query/checkauth.php';
 
 switch ($attributes[act]) {
     
-    case "look":
+    case "look": 
         $title = "Презентация";
+        include 'main/header.php';
+        include 'main/selector.php';
+        break;
+    
+    case 'registration':
+        $title = "Регистрация";
         include 'main/header.php';
         include 'main/selector.php';
         break;
@@ -47,7 +50,6 @@ switch ($attributes[act]) {
     case 'pres':
         $title = "Мои презентации";
         include 'query/presentations.php';
-        include 'query/presentation.php';
         include 'main/header.php';
         include 'main/selector.php';
         include 'main/my_presentation.php';
@@ -55,9 +57,7 @@ switch ($attributes[act]) {
     
     case 'red':
         $title = "Редактор";
-        include 'query/name.php';
         include 'query/presentation.php';
-//        include 'query/audio_presentation.php';
         include 'main/header.php';
         include 'main/selector.php';
         include 'main/edit_p.php'; 
@@ -110,6 +110,42 @@ switch ($attributes[act]) {
         include 'main/header.php';
         include 'main/selector.php';
         include 'main/my_sounds.php';
+        break;
+    
+    case 'atsnd':
+        $title = "Выбор звуковых файлов.";
+        include 'query/my_sounds.php'; 
+        include 'main/header.php';
+        include 'main/selector.php';
+        include 'main/attach_sounds.php';
+        break; 
+    
+    case 'selimg':
+        $title = "Выбор слайдов.";
+        include 'query/my_images_for_select.php'; 
+        include 'main/header.php';
+        include 'main/selector.php';
+        include 'main/select_images.php';
+        break;
+    
+    case 'attachsound':
+        include 'main/header.php';
+        include 'action/attach_sound.php';
+        break;
+    
+    case 'changeimg':
+        include 'main/header.php';
+        include 'action/change_image_in_slide.php'; 
+        break;
+    
+    case 'addimg':
+        include 'main/header.php';
+        include 'action/add_image_in_slide.php'; 
+        break;
+    
+    case 'setime':
+        include 'main/header.php';
+        include 'action/set_time_slide.php'; 
         break;
     
     case 'select':

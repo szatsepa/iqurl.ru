@@ -51,30 +51,31 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
             <td>
-                <input id="img_<?php echo $value[id];?>" type="text" size="64" name="url" value="<?php echo $value[comment];?>" onclick="javascript:attachData('img_<?php echo $value[id];?>','img','<?php echo $value[id];?>');"/>
+                <input id="img_<?php echo $value[id];?>" type="text" size="64" name="url" value="<?php echo $value[comment];?>"/>
             </td>
             <td align="left"> 
                 <form action="index.php?act=ired" method="post">
                     <input type="hidden" name="id" value="<?php echo $value[id];?>"/>
                     <input type="submit" value="Редактировать"/>
+                    <input type="submit" value="Удалить" onclick="dokument:location='index.php?act=idel&action=<?php echo $attributes[act];?>&id=<?php echo $value[id];?>'"/>
                 </form>
             </td>
            
-            <td align="left">
+<!--            <td align="left">
                 <form action="index.php?act=idel" method="post">
                     <input type="hidden" name="action" value="<?php echo $attributes[act];?>"/>
                     <input type="hidden" name="id" value="<?php echo $value[id];?>"/>
-                    <input type="submit" value="Удалить"/>
+                    <input type="submit" value="Удалить" onclick="dokument:location='index.php?act=idel&action=<?php echo $attributes[act];?>&id=<?php echo $value[id];?>'"/>
                 </form>
             </td>
-        </tr>
+        </tr>-->
         
      <?php   }
      include 'main/upload_images.php'; 
         ?>
     </table>
 </div>
-<script language="JavaScript"> 
+<!--<script type="text/JavaScript"> 
 function attachData(cod, str, id) { 
     
     var obj = document.getElementById(cod);
@@ -83,4 +84,4 @@ function attachData(cod, str, id) {
 	
 return;
 }
-</script>
+</script>-->

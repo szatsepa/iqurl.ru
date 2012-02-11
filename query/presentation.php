@@ -6,38 +6,34 @@
 
 $name_id = intval($attributes[name_id]);
 
-$query = "SELECT p.id, 
-                 i.name AS p_url,
-                 p.time
-            FROM presentation AS p, 
-                 images AS i 
-            WHERE p.name_id =$name_id 
-              AND p.p_url = i.id
-              AND p.type = 1";
+$query = "SELECT name FROM names WHERE id = $name_id";
 
 $result = mysql_query($query) or die($query);
 
-$presentation_array = array();
+$row = mysql_fetch_row($result);
 
-while ($var = mysql_fetch_assoc($result)){
-   
-    array_push($presentation_array, $var);
-}
+$name = $row[0];
 
-$query = "SELECT p.id, 
-                 s.name AS p_url,
-                 p.time
-            FROM presentation AS p, 
-                 sites AS s 
-            WHERE p.name_id =$name_id 
-              AND p.p_url = s.id
-              AND p.type = 0";
+unset ($row);  
+
+$query = "SELECT p.id,
+            (SELECT i.comment FROM images AS i WHERE i.id = p.p_url AND i.type = p.type) AS img, 
+            (SELECT i.id FROM images AS i WHERE i.id = p.p_url AND i.type = p.type) AS img_id, 
+            (SELECT s.comment FROM sites AS s WHERE s.id = p.p_url AND s.type = p.type) AS lnk, 
+            (SELECT s.id FROM sites AS s WHERE s.id = p.p_url AND s.type = p.type) AS lnk_id, 
+            (SELECT snd.comment FROM sounds AS snd WHERE snd.id = p.sound) AS sound, 
+            (SELECT snd.id FROM sounds AS snd WHERE snd.id = p.sound) AS sound_id,
+            p.time
+          FROM `presentation` AS p 
+          WHERE p.name_id = $name_id";
 
 $result = mysql_query($query) or die($query);
 
+$presentation = array();
+
 while ($var = mysql_fetch_assoc($result)){
-   
-    array_push($presentation_array, $var);
+
+    array_push($presentation, $var);
 }
 
 mysql_free_result($result);
