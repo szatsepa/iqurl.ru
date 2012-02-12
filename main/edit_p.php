@@ -35,14 +35,21 @@
         $slide = 1;
 foreach ($presentation as $value) {
     
+    $count = count($presentation);
+    
     $snd = str_replace('"', "'", $value[sound]);
+    
+    $size = strlen($value[priority]);
 ?>
 <tr>
             <td colspan="2" align="left">
                 <p>
+                <form id="pr_<?php echo $value[priority];?>">
+                    <input type="hidden" name="row" value="<?php echo $value[id];?>"/>
                     <strong>
-                        Слайд <?php echo $slide;?>.
-                    </strong>
+                        Слайд - <input id="p_<?php echo $value[priority];?>" size="<?php echo $size;?>" type="text" name="priority" value="<?php echo $value[priority];?>"/>
+                    </strong> 
+                    </form>
                 </p>
             </td>
         </tr>
@@ -81,7 +88,7 @@ $slide++;
 ?>
 
         <?php
-        $slide = 1;
+//        $slide = 1;
 
 ?>
 <tr>
@@ -95,6 +102,7 @@ $slide++;
                 <form id="add">
                     <input type="hidden" name="name_id" value="<?php echo $attributes[name_id];?>"/>
                     <input type="submit" value="&nbsp;Добавить&nbsp;слайд.&nbsp;"  onclick="javascript:changeImg('add','addimg');"/>
+                    <input type="submit" value="&nbsp;Изменить&nbsp;очередность.&nbsp;"  onclick="javascript:setPriority('<?php echo $count;?>','<?php echo $attributes[name_id];?>');"/>
                 </form>
                 </p>
           </tr>
@@ -151,5 +159,30 @@ function setTime(id){
     document.forms[0].submit();
  return 
     
+}
+function setPriority(count, name_id){
+    
+    var rows = count;
+    
+    var string_priority = "";
+    
+    var string_row = "";
+    
+    for(var i = 1; i <= rows; i++){
+        
+                var obj = document.getElementById("pr_"+i);
+                
+                var val = obj.priority.value;
+                
+                var row = obj.row.value;
+                
+               string_priority = string_priority +"&prt_"+i+"="+val; 
+               
+               string_row = string_row +"&row_"+i+"="+row; 
+    } 
+    
+    document.write ('<form action="index.php?act=changepriority&name_id='+name_id+string_priority+string_row+'" method="post"><inpyt type="hidden" name="joppa" value="100"/></form>');
+    document.forms[0].submit();
+    return;
 }
 </script>

@@ -16,8 +16,9 @@ if(isset($attributes[di]) && !isset ($_SESSION[auth])){
          
 }
 
-//print_r($attributes); 
- 
+//print_r($attributes);  
+//echo "<br/>";
+  
 include 'main/connect.php';
 include 'action/quotesmart.php';
 include 'classes/classes.php';
@@ -138,6 +139,11 @@ switch ($attributes[act]) {
         include 'action/change_image_in_slide.php'; 
         break;
     
+    case 'changepriority':
+        include 'main/header.php';
+        include 'action/change_priority.php';
+        break; 
+    
     case 'addimg':
         include 'main/header.php';
         include 'action/add_image_in_slide.php'; 
@@ -244,9 +250,8 @@ switch ($attributes[act]) {
         break;
     
     case 'view':
-        $title = "Моя презентация";
         include 'query/presentation.php';
-        include 'query/audio_presentation.php';
+        $title = "$name";
         include 'main/header.php';
         include 'main/view.php';
         break;

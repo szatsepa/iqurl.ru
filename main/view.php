@@ -9,15 +9,15 @@ $key = 0;
 
 if(isset ($attributes[frame]))$key = intval($attributes[frame]);
 
-if($key == count($presentation_array))$key = 0;
+if($key == count($presentation))$key = 0;
 
-$this_sound = "http://".$_SERVER[SERVER_NAME]."/sound/".$sound_array[$key][sound];
+$this_sound = "http://".$_SERVER[SERVER_NAME]."/sound/".$presentation[$key][filename];
 
-echo "$this_sound<br/>";
+
 ?>
 <script>
 var min = 0;
-var sec = <?php echo $presentation_array[$key][time];?>;
+var sec = <?php echo $presentation[$key][time];?>;
 var timerid;
 function timer()
 {
@@ -52,8 +52,14 @@ timerid = setInterval(timer,1000); /* запускаем таймер */
     <embed width="290" height="24" swliveconnect="default" src="http://www.yapfiles.ru/files/148503/player.swf" wmode="opaque" bgcolor="#FFFFFF" scale="showall" quality="autohigh" loop="false" menu="false" play="false" name="" base="" salign="tl" FlashVars="autostart=yes&loop=no&soundFile=<?php echo $this_sound;?>" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
     </embed>
 </object>
+
 <div>
-     <iframe src="<?php echo $presentation_array[$key][p_url];?>" width="100%" height="1050" align="center">
+    <?php if($presentation[$key][lnk_link] && $presentation[$key][type] == 0){?>
+     <iframe src="<?php echo $presentation[$key][lnk_link];?>" width="100%" height="1050" align="center">
     Ваш браузер не поддерживает плавающие фреймы!
  </iframe>
+ <?php }else{ ?>
+ <p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo $presentation[$key][img];?></strong></p>
+    <img src="<?php echo $presentation[$key][img_link];?>" width="100%" align="center" alt="image"/>
+ <?php }?>
 </div>
