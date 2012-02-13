@@ -13,6 +13,16 @@ if($key == count($presentation))$key = 0;
 
 $this_sound = "http://".$_SERVER[SERVER_NAME]."/sound/".$presentation[$key][filename];
 
+if(!$presentation[$key][filename]){
+    ?>
+<script language="javascript">
+    if(confirm("ПРЕЗЕНТАЦИЯ НЕ ГОТОВА К ПОКАЗУ.\n                  ВЕРНУТЬСЯ?")){
+        document.location = "index.php?act=pres";
+    }
+</script>
+
+    <?php
+}
 
 ?>
 <script>

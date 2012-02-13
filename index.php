@@ -16,13 +16,22 @@ if(isset($attributes[di]) && !isset ($_SESSION[auth])){
          
 }
 
-//print_r($attributes);  
+//print_r($_REQUEST);
 //echo "<br/>";
+
+print_r($_SESSION);
+//echo "<br/>";
+//print_r($attributes);  
+
   
 include 'main/connect.php';
 include 'action/quotesmart.php';
+
+if($attributes[act] != 'registration'){
 include 'classes/classes.php';
 if(isset ($_SESSION[id])) include 'query/checkauth.php';
+
+}
 
 switch ($attributes[act]) {
     
@@ -34,6 +43,12 @@ switch ($attributes[act]) {
     
     case 'registration':
         $title = "Регистрация";
+        include 'main/header.php';
+        include 'main/selector.php';
+        include 'main/registration.php';
+        break;
+    
+    case 'reg':
         include 'main/header.php';
         include 'main/selector.php';
         break;

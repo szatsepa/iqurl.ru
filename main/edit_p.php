@@ -44,10 +44,10 @@ foreach ($presentation as $value) {
 <tr>
             <td colspan="2" align="left">
                 <p>
-                <form id="pr_<?php echo $value[priority];?>">
+                <form id="fpr_<?php echo $slide;?>">
                     <input type="hidden" name="row" value="<?php echo $value[id];?>"/>
                     <strong>
-                        Слайд - <input id="p_<?php echo $value[priority];?>" size="<?php echo $size;?>" type="text" name="priority" value="<?php echo $value[priority];?>"/>
+                        Слайд - <input id="tpr_<?php echo $slide;?>" size="<?php echo $size;?>" type="text" name="priority" value="<?php echo $value[priority];?>"/>
                     </strong> 
                     </form>
                 </p>
@@ -170,7 +170,7 @@ function setPriority(count, name_id){
     
     for(var i = 1; i <= rows; i++){
         
-                var obj = document.getElementById("pr_"+i);
+                var obj = document.getElementById("fpr_"+i);
                 
                 var val = obj.priority.value;
                 
@@ -180,7 +180,7 @@ function setPriority(count, name_id){
                
                string_row = string_row +"&row_"+i+"="+row; 
     } 
-    
+//    alert('<form action="index.php?act=changepriority&name_id='+name_id+string_priority+string_row+'" method="post">');
     document.write ('<form action="index.php?act=changepriority&name_id='+name_id+string_priority+string_row+'" method="post"><inpyt type="hidden" name="joppa" value="100"/></form>');
     document.forms[0].submit();
     return;

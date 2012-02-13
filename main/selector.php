@@ -13,8 +13,8 @@ if (!isset ($_SESSION[id])) {
     <span class="selector2">
         <form id="13">
             <input type="password" name="code" size="18" style='font-size:8pt;'  />
-            <input type="submit" value="Войти" class='submit3' style='color:green' onclick="javascript:userAuth('13');"/>
-           <input type="submit" value="Регистрация" class='submit3' style='color:green' onclick="javascript:userReg();"/>
+            <input id="psw" type="submit" value="Войти" class='submit3' style='color:green' onclick="javascript:userAuth('psw');"/>
+           <input type="submit" value="Регистрация" class='submit3' style='color:green' onclick="document.location='http://iqurl.ru/index.php?act=registration'"/>
             </form> 
          
     </span>
@@ -84,7 +84,7 @@ if(isset($_SESSION[auth])){
         
         var obj = document.getElementById(id);
         
-        var passw = obj.code.value;
+        var passw = obj.value;
         
         document.write ('<form action="index.php?act=auth" method="post"><input type="hidden" name="code" value="'+passw+'"/></form>');
         document.forms[0].submit();

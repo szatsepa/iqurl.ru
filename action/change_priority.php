@@ -28,6 +28,7 @@ foreach ($tmp_array as $key => $value) {
     
     $result = mysql_query($query) or die($query);
     
+//    echo $query."<br/>";
 }
 ?>
 <script language="javascript">
