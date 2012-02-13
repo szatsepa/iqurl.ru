@@ -1,0 +1,5 @@
+body { margin:20px auto;width:310px;padding:20px;border:1px solid #ccc;background:#fff;font-family:georgia,times,serif; }
+fieldset { border:0;margin:0;padding:0; }
+label { display:block; }
+input.text,textarea { width:300px;font:12px/12px 'courier new',courier,monospace;color:#333;padding:3px;margin:1px 0;border:1px solid #ccc; }
+input.submit { padding:2px 5px;font:bold 12px/12px verdana,arial,sans-serif; }

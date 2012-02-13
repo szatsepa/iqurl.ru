@@ -27,12 +27,24 @@ div.selector {
 	border-top:3px solid #a7a7a7;
 	border-bottom:1px solid white;
 	font-size:4ex;
-	padding: 0 0 0 0;
+/*	padding: 0 0 0 0;*/
+        padding-left: 22px;
 	margin-top:7px;
+/*        margin-left: 22px; */
 	width:100%;
         height: 28px;
-	}
-
+/*        outline: 1px solid red;*/
+	} 
+div.selector2{
+        position: relative;
+        float: left;
+        width: 185px;
+/*	right: 5px;*/
+	margin:0 0 0 0;
+	padding:0 0 0 0;
+	font-size:8pt;    
+            
+        }
 span.selector {
 	display: inline;
 	margin-right: 2px;
@@ -40,8 +52,9 @@ span.selector {
 
 span.selector2 {
 	display: inline;
-	position: absolute;
-	right: 5px;
+	position: relative;
+        float: left;
+/*	right: 5px;*/
 	margin:0 0 0 0;
 	padding:0 0 0 0;
 	font-size:8pt;

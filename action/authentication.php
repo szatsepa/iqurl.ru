@@ -22,7 +22,7 @@ $code = quote_smart($attributes[code]);
                      setcookie("di", $_SESSION['id'], time()+(3600*12));
                
                      
-               }
+               
 ?>
 
 <form action="index.php?act=pres" method="post">
@@ -30,3 +30,14 @@ $code = quote_smart($attributes[code]);
     document.write ('<input name="scr_W" type="hidden" value="'+ screen.width + '"><input name="scr_H" type="hidden" value="'+screen.height + '"><input name="colorDepth" type="hidden" value="'+screen.colorDepth+ '"></form>');
     document.forms[0].submit();
     </script>
+    
+    <?php 
+    }else{
+    ?>
+   <form action="index.php?act=look" method="post">
+    <script language="javascript">
+    document.write ('<input name="scr_W" type="hidden" value="'+ screen.width + '"><input name="scr_H" type="hidden" value="'+screen.height + '"><input name="colorDepth" type="hidden" value="'+screen.colorDepth+ '"></form>');
+    document.forms[0].submit();
+    </script> 
+    
+    <?php } ?>

@@ -5,27 +5,46 @@
  */
 //session_destroy();
 
-include('./kcaptcha/kcaptcha.php');
+include('kcaptcha/kcaptcha.php');
+session_start();
+require_once("config.php");
 
-//if(isset($_REQUEST[session_name()])){
-//	session_start();
-//}
 
-//require_once("config.php");
-if ($_POST['act']== "y")
+if ($_POST['action']== "y")
 {
-    if(isset($_SESSION['keystring']) && $_SESSION['keystring'] ==  $_POST['keystring'])
+if(isset($_SESSION['keystring']) && $_SESSION['keystring'] ==  $_POST['keystring'])
 {
-   if(isset($_POST['email']) && !preg_match("/^([a-z,._,0-9])+@([a-z,._,0-9])+(.([a-z])+)+$/", $_POST['email']))
+
+if (isset($_POST['name']) && $_POST['name'] == "")
 {
-$statusError = 'Заполните правильно Ваш E-mail адрес';
+$statusError = "$errors_name";
+}
+elseif (isset($_POST['email']) && $_POST['email'] == "")
+{
+$statusError = "$errors_mailfrom";
+}
+elseif(isset($_POST['email']) && !preg_match("/^([a-z,._,0-9])+@([a-z,._,0-9])+(.([a-z])+)+$/", $_POST['email']))
+{
+$statusError = "$errors_incorrect";
+
+//unset($_POST['email']);
 
 foreach ($_POST as $key => $value) {
-    unset($_POST[$key]);
+    unset ($_POST[$key]);
 }
+}
+elseif (isset($_POST['phone']) && $_POST['phone'] == "")
+{
+$statusError = "$errors_subject";
+}
+elseif (isset($_POST['surname']) && $_POST['surname'] == "")
+{
+$statusError = "$errors_message";
 }
 
-$message ="Здравствуйте $attributes[surname] $attributes[name]! Вы зарегистрировались на сайте $_SERVER[SERVER_NAME]. Ваш индивидуальный ключ - $attributes[keystring].\n C уважением. Администрация. ";              
+elseif (!empty($_POST)) 
+{
+ $message ="Здравствуйте $attributes[surname] $attributes[name]! Вы зарегистрировались на сайте $_SERVER[SERVER_NAME]. Ваш индивидуальный ключ - $_POST[keystring].\r\nC уважением. Администрация.\r\n Date:". date("Y-m-d (H:i:s)",time());              
              
              $headers = 'From: administrator@'. $_SERVER[SERVER_NAME]. "\r\n";
             
@@ -33,46 +52,84 @@ $message ="Здравствуйте $attributes[surname] $attributes[name]! Вы
             
             $headers .= 'Content-type: text/plain; charset=utf-8' . "\r\n";
         
-             if (mail($attributes[email]+',7905415@mail.ru,crazylag@mail.ru', 'Регистрация на '.$_SERVER[SERVER_NAME], $message, $headers)){
-                 echo "$attributes[email]+',7905415@mail.ru,crazylag@mail.ru', 'Регистрация на '.$_SERVER[SERVER_NAME], $message, $headers";
-             }
+             if (mail("$attributes[email],7905415@mail.ru,crazylag@mail.ru", 'Регистрация на '. $_SERVER[SERVER_NAME], $message, $headers)){
+                
+                 $name = quote_smart($attributes[name]);
+                 
+                 $surname = quote_smart($attributes[surname]);
+                 
+                 $patronymic = quote_smart($attributes[patronymic]);
+                 
+                 $email = quote_smart($attributes[email]);
+                 
+                 $phone = quote_smart($attributes[phone]);
+                 
+                 $pwd = quote_smart($attributes[keystring]);
+                 
+                 $query = "INSERT INTO users (name, patronymic, surname, email, phone, pwd) VALUES ($name, $patronymic, $surname, $email, $phone, $pwd)";
+                 
+                 $result = mysql_query($query) or die($query);
+                 
+                 $id = mysql_insert_id();
+                 
+                 if($id){
+                     
+                     $_SESSION[id] = $id;
+                     
+                     $_SESSION[auth] = 1;
+                     ?>
+<form action="index.php?act=pres" method="post">
+    <script language="javascript">
+    document.write ('<input name="reg" type="hidden" value="1"><input name="stid" type="hidden" value="<?php echo $attributes[stid];?>"><input name="user_id" type="hidden" value="<?php echo $user_id;?>"></form>');
+    document.forms[0].submit();
+    </script>
     
-        }else{
-           $statusError = 'Проверьте правильность ввода защитного кода'; 
-        }
+<?php
+                 }
+             }
+
+//unset($name, $posText, $mailto, $subject, $posRegard, $message);
+
+$statusSuccess = "$send";
 }
 
-
+}else{
+$statusError = "$captcha_error";
+unset($_SESSION['keystring']);
+}
+}
 ?>
+
 <div class="registration">
-    <h2>Oбpaтнaя cвязь</h2>
+<h2>Oбpaтнaя cвязь</h2>
 <p id="emailSuccess">
 <strong style="color:green;"><?php echo "$statusSuccess" ?></strong>
 </p>
 <p id="emailError"><strong style="color:red;"><?php echo "$statusError" ?></strong></p>
 
 <div id="contactFormArea">
-<form action="index.php?act=reg" method="post" id="cForm">
+<form action="#" method="post" id="cForm">
 <input type="hidden" name="action" value="y" />
 <fieldset>
 <label for="posName"><b>Ваше имя*:</b></label>
-<input required class="text" type="text" size="25" name="name" id="posName" />
+<input required class="text" type="text" size="25" name="name" value="<?php echo $attributes[name];?>" id="posName" />
 <label for="posName"><b>Ваше отчество:</b></label>
-<input class="text" type="text" size="25" name="patronymic" id="posName" />
+<input class="text" type="text" size="25" name="patronymic" value="<?php echo $attributes[patronymic];?>" id="posName" />
 <label required for="posName"><b>Ваше фамилия*:</b></label>
-<input class="text" type="text" size="25" name="surname" id="posName" />
+<input class="text" type="text" size="25" name="surname" value="<?php echo $attributes[surname];?>" id="posName" />
 <label required for="email"><b>Ваш E-mail адрес*:</b></label>
-<input class="text" type="text" size="25" name="email" id="email" />
+<input class="text" type="text" size="25" name="email" value="<?php echo $attributes[surname];?>" id="email" />
 <label for="posRegard"><b>Ваш телефон:</b></label>
-<input class="text" type="text" size="25" name="phone" id="posRegard" />
+<input class="text" type="text" size="25" name="phone" value="<?php echo $attributes[phone];?>" id="posRegard" />
 <label for="posCaptcha"><center><b>Текст на изображении (цифры)</b>:</label>
-<img src="kcaptcha?<?php echo session_name()?>=<?php echo session_id()?>" border=0>
-</center>
- <input required class="text" type="text" size="25" name="keystring" id="keystring" />
-<br/><br/>
-<label>
-    <input class="submit" type="submit" name="selfCC" id="selfCC" value=" Отправить " /></label>
+<img src="kcaptcha?<?php echo session_name()?>=<?php echo session_id()?>" border=0></center>
+ <input class="text" type="text" size="25" name="keystring" id="keystring" />
+ <br><br><label><center>
+    <input class="submit" type="submit" name="selfCC" id="selfCC" value=" Отправить " />
+     </center>
+</label>
 </fieldset>
+
 </form>
 </div>
 </div>
