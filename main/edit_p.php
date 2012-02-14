@@ -39,13 +39,17 @@ foreach ($presentation as $value) {
     
     $snd = str_replace('"', "'", $value[sound]);
     
+    $string_out = "$value[img]$value[lnk]";
+    
+    $string_out = str_replace('"', "'", $string_out);
+    
     $size = strlen($value[priority]);
 ?>
 <tr>
             <td colspan="2" align="left">
                 <p>
                 <form id="fpr_<?php echo $slide;?>">
-                    <input type="hidden" name="row" value="<?php echo $value[id];?>"/>
+                    <input type="hidden" name="row" value="<?php echo $value[row];?>"/>
                     <strong>
                         Слайд - <input id="tpr_<?php echo $slide;?>" size="<?php echo $size;?>" type="text" name="priority" value="<?php echo $value[priority];?>"/>
                     </strong> 
@@ -56,24 +60,24 @@ foreach ($presentation as $value) {
 
 <tr>
 <td>
-    <form id="f_<?php echo $value[id];?>">
+    <form id="f_<?php echo $slide;?>">
         <input type="hidden" name="name_id" value="<?php echo $name_id;?>"/>
-        <input type="hidden" name="id" value="<?php echo $value[id];?>"/>
-        <p><input type="text" size="96" name="url" value="<?php if($value[img]){echo $value[img];}else{echo $value[lnk];}?>" onclick="this.select();"/>
+        <input type="hidden" name="id" value="<?php echo $value[row];?>"/>
+        <p><input type="text" size="96" name="url" value="<?php echo "$string_out";?>" onclick="this.select();"/>
         <input type="text" size="3" name="times" value="<?php echo $value[time];?>"/>&nbsp;sec.</p>
         <?php if(!$value[sound]){?>
-        <input type="submit" value="Прикрепить звук" onclick="javascript:attachSound('f_<?php echo $value[id];?>')"/>
+        <input type="submit" value="Прикрепить звук" onclick="javascript:attachSound('f_<?php echo $slide;?>')"/>
         <?php }else{?>
         <p>
             <input type="text" size="96" name="sound" value="<?php echo $snd;?>" onclick="this.select();"/>
         </p>
-        <input type="submit" value="&nbsp;Изменить&nbsp;аудиофайл.&nbsp;" onclick="javascript:attachSound('f_<?php echo $value[id];?>');"/>
+        <input type="submit" value="&nbsp;Изменить&nbsp;аудиофайл.&nbsp;" onclick="javascript:attachSound('f_<?php echo $slide;?>');"/>
         <?php }?>
-        <input type="submit" value="&nbsp;Изменить&nbsp;слайд.&nbsp;" onclick="javascript:changeImg('f_<?php echo $value[id];?>','changeimg');"/>
+        <input type="submit" value="&nbsp;Изменить&nbsp;слайд.&nbsp;" onclick="javascript:changeImg('f_<?php echo $slide;?>','changeimg');"/>
         
-        <input type="submit" value="&nbsp;Установить&nbsp;время.&nbsp;" onclick="javascript:setTime('f_<?php echo $value[id];?>');"/>
+        <input type="submit" value="&nbsp;Установить&nbsp;время.&nbsp;" onclick="javascript:setTime('f_<?php echo $slide;?>');"/>
                     
-         &nbsp;&nbsp;<input type="submit" value="Удалить слайд." onclick="javascript:delRow('dels','red',<?php echo $value[id];?>,<?php echo $attributes[name_id];?>);"/>
+         &nbsp;&nbsp;<input type="submit" value="Удалить слайд." onclick="javascript:delRow('dels','red',<?php echo $slide;?>,<?php echo $attributes[name_id];?>);"/>
       </form>  
     </td>
 </tr>

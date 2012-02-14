@@ -37,8 +37,10 @@ switch ($attributes[act]) {
     
     case "look": 
         $title = "Презентация";
+        include 'query/presentations_list.php';
         include 'main/header.php';
         include 'main/selector.php';
+//        include 'main/presentations_list.php';
         break;
     
     case 'registration':
@@ -280,6 +282,7 @@ switch ($attributes[act]) {
         break;
     
     case 'auth':
+        include 'main/header.php';
         include 'action/authentication.php';
        break;
     

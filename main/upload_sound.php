@@ -17,8 +17,9 @@
     <td colspan="2">
       <form enctype="multipart/form-data" action="index.php?act=usnd" method="post">  
         <input type="hidden" name="name_id" value="<?php echo $attributes[name_id];?>"/>
-        <input type="text" size="64" name="comment" value=""/><br/><br/>
         <input name="soundfile" size="50" accept="multimedia/*.mp3" type="file" required/>
+        <br/><small>Комментарий к аудиофайлу.</small><br/>  
+        <input type="text" size="64" name="comment" value=""/>
         <input type="submit" value="Загрузить файл"/>
         </form>
     </td>
