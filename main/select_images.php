@@ -3,6 +3,7 @@
 /*
  * created by arcady.1254@gmail.com 11/2/2012
  */
+//print_r($images_array);
 ?>
 <div>
     <table width="1010" border="0">
@@ -51,7 +52,7 @@ $rows = 0;
                     <input type="hidden" name="images" value="<?php echo $value[type];?>"/>
                     <input type="hidden" name="row_id" value="<?php echo $attributes[id];?>"/>
                     <input type="hidden" name="name_id" value="<?php echo $attributes[name_id];?>"/>
-                    <input type="submit" value="Прикрепить" onclick="javascript:changeImg('f_<?php echo $rows;?>')"/>   
+                    <input type="Button" value="Прикрепить" onclick="javascript:insertLink('f_<?php echo $rows;?>')"/>   
                 </form>
             </td>
         </tr>
@@ -62,7 +63,7 @@ $rows = 0;
     </table>
 </div>
 <script language="JavaScript">
-function changeImg(cod) {
+function insertLink(cod) {
     
     var obj = document.getElementById(cod);
     
@@ -70,23 +71,20 @@ function changeImg(cod) {
       
     var row = obj.row_id.value;
     
+    if(!row){row = 0;}
+    
     var id = obj.snd_id.value; 
     
     var images = obj.images.value;
     
     var action = obj.action.value;
     
+    var out_string = "index.php?act="+action+"&id="+id+"&row="+row+"&name_id"+name_id+"&type="+images;
+	
+    alert(out_string); 
     
+    document.location.href = out_string;
 	
-//    alert("names "+name_id+'\n'+"rows "+row+"\n"+"id "+id+"\n"+"type "+images+"\n"+"action "+action); 
-    document.write ('<form action="index.php?act='+action+'" method="post">\n\
-<input type="hidden" name="type" value="'+images+'"/>\n\
-<input type="hidden" name="id" value="'+id+'"/>\n\
-<input type="hidden" name="row" value="'+row+'"/>\n\
-<input type="hidden" name="name_id" value="'+name_id+'"/>\n\
-</form>');
-    document.forms[0].submit();
-	
-return;
+return false;
 }
 </script> 

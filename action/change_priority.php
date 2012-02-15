@@ -22,14 +22,17 @@ foreach ($_GET as $key => $value) {
 
 $tmp_array =  array_combine($row_array, $priority_array);
 
+$out = 1;
+
 foreach ($tmp_array as $key => $value) {
     
     $query = "UPDATE presentation SET priority = $value WHERE id = $key";
     
     $result = mysql_query($query) or die($query);
     
-//    echo $query."<br/>";
+    if(!$result)$out=NULL;
 }
+if($out){
 ?>
 <script language="javascript">
         document.write ('<form action="index.php?act=red" method="post">\n\
@@ -37,3 +40,4 @@ foreach ($tmp_array as $key => $value) {
 </form>');
         document.forms[0].submit();
 </script>
+<?php }?>

@@ -220,8 +220,7 @@ $slide = 1;
                   }
             
             ?>
-<!--            <input type="hidden" name="otkel" value=""/>-->
-           <td align="right">
+            <td align="right">
                <input type="submit" name="action" value="Добавить слайд"/>
            </td>
            
