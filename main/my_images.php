@@ -7,10 +7,7 @@
 ?>
 <div>
     <table width="86%" border="0">
-        <?php if($attributes[act] == "arch"){
-            
-            $tmp_arr = $images_array;
-            ?>
+        
          <tr>
             <td>
                 
@@ -19,17 +16,10 @@
                 <strong>Архив изображений.</strong>
             </td>
         </tr>
-        <?php
-        }else{
-            $tmp_arr = $allpres_array;
-        }
-?>
-       
-        
-        <?php 
+ <?php 
         
         
-        foreach ($tmp_arr as $value) {
+        foreach ($images_array as $value) {
             $name = $value[name];
           if($attributes[act] == "arch"){  
             $len = strlen($value[name]);
@@ -54,21 +44,22 @@
                 <input id="img_<?php echo $value[id];?>" type="text" size="64" name="url" value="<?php echo $value[comment];?>"/>
             </td>
             <td align="left"> 
-                <form action="index.php?act=ired" method="post">
-                    <input type="hidden" name="id" value="<?php echo $value[id];?>"/>
-                    <input type="submit" value="Редактировать"/>
-                    <input type="submit" value="Удалить" onclick="dokument:location='index.php?act=idel&action=<?php echo $attributes[act];?>&id=<?php echo $value[id];?>'"/>
-                </form>
+                <table>
+                    <tr>
+                        <td>
+                             <form action="index.php?act=ired" method="post">
+                                <input type="hidden" name="id" value="<?php echo $value[id];?>"/>
+                                <input type="submit" value="Редактировать"/>
+                             </form>
+                        </td>
+                        <td>
+                            <input type="submit" value="Удалить" onclick="dokument:location='index.php?act=imgdel&action=<?php echo $attributes[act];?>&id=<?php echo $value[id];?>'"/>
+                        </td>
+                    </tr>
+                </table>
+               
             </td>
-           
-<!--            <td align="left">
-                <form action="index.php?act=idel" method="post">
-                    <input type="hidden" name="action" value="<?php echo $attributes[act];?>"/>
-                    <input type="hidden" name="id" value="<?php echo $value[id];?>"/>
-                    <input type="submit" value="Удалить" onclick="dokument:location='index.php?act=idel&action=<?php echo $attributes[act];?>&id=<?php echo $value[id];?>'"/>
-                </form>
-            </td>
-        </tr>-->
+
         
      <?php   }
      include 'main/upload_images.php'; 

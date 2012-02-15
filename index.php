@@ -122,6 +122,11 @@ switch ($attributes[act]) {
         include 'main/my_links.php'; 
         break;
     
+    case 'linkdel':
+//        include 'main/header.php';
+        include 'action/del_slide_with_img.php';
+        break;
+    
     case 'snd':
         $title = "Архив звуков.";
         include 'query/my_sounds.php'; 
@@ -136,7 +141,16 @@ switch ($attributes[act]) {
         include 'main/header.php';
         include 'main/selector.php';
         include 'main/attach_sounds.php';
-        break; 
+        break;
+    
+    case 'sounddel':
+        include 'main/header.php';
+        include 'action/del_sound.php';
+        break;
+    
+    case 'delsound':
+        include 'action/del_sound_everywhere.php';
+        break;
     
     case 'selimg':
         $title = "Выбор слайдов.";
@@ -206,13 +220,14 @@ switch ($attributes[act]) {
         include 'action/change_sound.php';
         break;
     
-    case 'idel':
+    
+    case 'imgdel':
         include 'main/header.php';
-        include 'main/i_question.php';
+        include 'action/del_image.php';
         break;
     
-    case 'ddeli':
-        include 'action/del_image.php';
+    case 'cirdyckimage':
+        include 'action/del_image_everywhere.php';
         break;
     
     case 'uimg':
@@ -235,10 +250,6 @@ switch ($attributes[act]) {
     
     case 'ename':
         include 'action/edit_name.php';
-        break;
-
-    case 'dels':
-        include 'action/del_slide_with_img.php';
         break;
     
     case 'str':

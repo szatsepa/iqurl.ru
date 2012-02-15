@@ -6,7 +6,7 @@ $alphabet = "0123456789abcdefghijklmnopqrstuvwxyz"; # do not change without chan
 
 # symbols used to draw CAPTCHA
 //$allowed_symbols = "0123456789"; #digits
-$allowed_symbols = "23456789"; #alphabet without similar symbols (o=0, 1=l, i=j, t=f)
+$allowed_symbols = "23456789aceghkmprsuxyz"; #alphabet without similar symbols (o=0, 1=l, i=j, t=f)
 
 # folder with fonts
 $fontsdir = 'fonts';	

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * created by arcady.1254@gmail.com 6/2/2012 
+ * created by arcady.1254@gmail.com 16/2/2012
  */
 
  $id = intval($attributes[id]);
@@ -15,7 +15,7 @@ $query_string = $attributes[action]."&name_id=".$name_id."&id=".$id;
     
     if(confirm("Вы действительно хотите удалить изображение?")){
       
-      document.location = "index.php?act=cirdyckimage&action=<?php echo $query_string;?>";
+      document.location = "index.php?act=delimage&action=<?php echo $query_string;?>";
       
     }else{
         

@@ -10,17 +10,23 @@
 
 if (!isset ($_SESSION[id])) {
     ?>
-    <div class="selector2">
-        <form id="13">
+    <span class="selector2">
+    <table>
+        <tr>
+            <td>
+                <form id="13" action="index.php?act=auth" method="post">
             <input id="psw" type="password" name="code" size="18" value="" style='font-size:8pt;'  />
-            <input type="submit" value="Войти" class='submit3' style='color:green' onclick="javascript:userAuth('psw');"/>
-          </form>   
-    </div>
-    <div class="selector2">
-        <input type="submit" value="Регистрация" class='submit3' style='color:green' onclick="document.location='http://iqurl.ru/index.php?act=registration'"/>
-            
-         
-    </div>
+            <input type="submit" value="Войти" class='submit3' style='color:green'/>
+          </form>  
+            </td>
+            <td>
+                <input type="submit" value="Регистрация" class='submit3' style='color:green' onclick="document.location='http://iqurl.ru/index.php?act=registration'"/>
+           
+            </td>
+        </tr>
+    </table>
+    </span>      
+   
 <?php } else { 
     // To Do Если имя и фамилия очень длинные, то выводить только фамилию
     ?>
@@ -69,10 +75,6 @@ if(isset($_SESSION[auth])){
             </td>
         </tr>
     </table>
-    <span class="selector">
-        
-       
-    </span>
 </div>
 <?php }
 
@@ -82,25 +84,3 @@ if(isset($_SESSION[auth])){
     <br/><br/>
 <?php if ($title != '') echo "<h2>".""."</h2>"; }?>
 </div>
-<script type="text/javascript" language="JavaScript">
-    function userAuth(id){
-        
-        var obj = document.getElementById(id);
-        
-        var passw = obj.value;
-        
-        document.write ('<form action="index.php?act=auth" method="post"><input type="hidden" name="code" value="'+passw+'"/></form>');
-        document.forms[0].submit();
-        
-        return false;
-        
-    }
-    function userReg(url){
-//      alert(url);  
-//      document.location.href = url;
-        document.write ('<form action="'+url+'" method="post"></form>');
-        document.forms[0].submit();
-        return false;
-    }
-
-</script>

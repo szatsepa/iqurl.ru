@@ -40,12 +40,22 @@
             </td>
 
             <td align="left" colspan="2">
-                <form action="index.php?act=sred" method="post">
-                <input id="snd_<?php echo $value[id];?>" type="text" size="64" name="url" value="<?php echo $comment;?>"/>
-                    <input type="hidden" name="id" value="<?php echo $value[id];?>"/>
-                    <input type="submit" value="Редактировать"/>
-                    <input type="submit" value="Удалить" onclick="document.location='index.php?act=sdel&id=<?php echo $value[id];?>&action=<?php echo $attributes[act];?>'"/>   
-                </form> 
+                <table>
+                    <tr>
+                        <td>
+                           <form action="index.php?act=sred" method="post">
+                             <input id="snd_<?php echo $value[id];?>" required type="text" size="64" name="url" value="<?php echo $comment;?>"/>
+                             <input type="hidden" name="id" value="<?php echo $value[id];?>"/>
+                             <input type="submit" value="Редактировать"/>
+                           </form>  
+                        </td>
+                        <td>
+                           <input type="submit" value="Удалить" onclick="document.location='index.php?act=sounddel&id=<?php echo $value[id];?>&action=<?php echo $attributes[act];?>'"/>   
+                 
+                        </td>
+                    </tr>
+                </table>
+                
             </td>
         </tr>
         

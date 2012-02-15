@@ -16,18 +16,18 @@
     <td>
         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
     </td>
-    <td>
+    <td colspan="2">
         
         <input type="hidden" name="name_id" value="<?php echo $attributes[name_id];?>"/>
         <input type="hidden" name="MAX_FILE_SIZE" value="1248575"/>        
         <input name="imgfile" size="50" accept="image/*" type="file" size="20" required/>
         <p><small>Название изображения.</small></p>
-        <input type="text" size="64" required name="comment" value=""/>
-        
+        <input type="text" size="64" required name="comment" value="" onclick="this.select();"/>
+        <input type="submit" value="Загрузить изображениe"/>
     </td>
-    <td colspan="2">
-        <input type="submit" value="Загрузить изображениe"/>&nbsp;&nbsp;
-    </td>
+<!--    <td>
+        &nbsp;&nbsp;
+    </td>-->
 </form>
 </tr>
 <tr>

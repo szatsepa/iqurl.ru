@@ -3,7 +3,6 @@
 /*
  * created by arcady.1254@gmail.com 13/2/2012
  */
-//session_destroy();
 
 include('kcaptcha/kcaptcha.php');
 session_start();
@@ -26,8 +25,6 @@ $statusError = "$errors_mailfrom";
 elseif(isset($_POST['email']) && !preg_match("/^([a-z,._,0-9])+@([a-z,._,0-9])+(.([a-z])+)+$/", $_POST['email']))
 {
 $statusError = "$errors_incorrect";
-
-//unset($_POST['email']);
 
 foreach ($_POST as $key => $value) {
     unset ($_POST[$key]);
@@ -71,26 +68,19 @@ elseif (!empty($_POST))
                  $result = mysql_query($query) or die($query);
                  
                  $id = mysql_insert_id();
-                 
+ 
                  if($id){
-                     
+                    
                      $_SESSION[id] = $id;
                      
                      $_SESSION[auth] = 1;
-                     ?>
-<form action="index.php?act=pres" method="post">
-    <script language="javascript">
-    document.write ('<input name="reg" type="hidden" value="1"><input name="stid" type="hidden" value="<?php echo $attributes[stid];?>"><input name="user_id" type="hidden" value="<?php echo $user_id;?>"></form>');
-    document.forms[0].submit();
-    </script>
-    
-<?php
+                     header("location:index.php?act=auth&code=$attributes[keystring]");                    
+
                  }
              }
 
-//unset($name, $posText, $mailto, $subject, $posRegard, $message);
-
 $statusSuccess = "$send";
+
 }
 
 }else{
@@ -118,7 +108,7 @@ unset($_SESSION['keystring']);
 <label required for="posName"><b>Ваше фамилия*:</b></label>
 <input class="text" type="text" size="25" name="surname" value="<?php echo $attributes[surname];?>" id="posName" />
 <label required for="email"><b>Ваш E-mail адрес*:</b></label>
-<input class="text" type="text" size="25" name="email" value="<?php echo $attributes[surname];?>" id="email" />
+<input class="text" type="text" size="25" name="email" value="<?php echo $attributes[email];?>" id="email" />
 <label for="posRegard"><b>Ваш телефон:</b></label>
 <input class="text" type="text" size="25" name="phone" value="<?php echo $attributes[phone];?>" id="posRegard" />
 <label for="posCaptcha"><center><b>Текст на изображении (цифры)</b>:</label>
