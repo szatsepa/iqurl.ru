@@ -21,7 +21,7 @@ if(isset($attributes[di]) && !isset ($_SESSION[auth])){
 
 //print_r($_SESSION);
 //echo "<br/>";
-//print_r($attributes);  
+print_r($attributes);  
 
   
 include 'main/connect.php';
@@ -37,33 +37,21 @@ switch ($attributes[act]) {
     
     case "look": 
         $title = "Презентация";
-        include 'query/presentations_list.php';
         include 'main/header.php';
         include 'main/selector.php';
-//        include 'main/presentations_list.php';
         break;
     
+    case 'auth':
+        include 'main/header.php';
+        include 'action/authentication.php';
+       break;
+   
     case 'registration':
         $title = "Регистрация";
         include 'main/header.php';
         include 'main/selector.php';
         include 'main/registration.php';
-        break;
-    
-    case 'reg':
-        include 'main/header.php';
-        include 'main/selector.php';
-        break;
-    
-    case "new":
-        $title = "Новая презентация";
-        
-        include 'query/presentations.php';
-        include 'query/presentation.php';
-        include 'main/header.php';
-        include 'main/selector.php';
-        include 'main/new_presentation.php';
-        break;
+        break;    
     
     case 'pres':
         $title = "Мои презентации";
@@ -73,16 +61,62 @@ switch ($attributes[act]) {
         include 'main/my_presentation.php';
         break;
     
+    case 'view':
+        include 'query/presentation.php';
+        $title = "$name";
+        include 'main/header.php';
+        include 'main/view.php';
+        break;
+     
     case 'red':
         $title = "Редактор";
         include 'query/presentation.php';
         include 'main/header.php';
         include 'main/selector.php';
         include 'main/edit_p.php'; 
-             
+        break;
+     
+    case 'delpresentation':
+        include 'main/header.php';
+        include 'action/del_presentation.php';
+        break;  
+        
+    case 'selimg':
+        $title = "Выбор слайдов.";
+        include 'query/my_images_for_select.php'; 
+        include 'main/header.php';
+        include 'main/selector.php';
+        include 'main/select_images.php';
         break;
     
-    case 'arch':
+    case 'ename':
+        include 'action/edit_name.php';
+        break;
+     
+    case 'atsnd':
+        $title = "Выбор звуковых файлов.";
+        include 'query/my_sounds.php'; 
+        include 'main/header.php';
+        include 'main/selector.php';
+        include 'main/attach_sounds.php';
+        break;
+    
+    case 'attachsound':
+        include 'main/header.php';
+        include 'action/attach_sound.php';
+        break;
+        
+    case 'setime':
+        include 'main/header.php';
+        include 'action/set_time_slide.php'; 
+        break;
+    
+    case 'delslide':
+        include 'main/header.php';
+        include 'action/del_slide.php';
+        break;
+        
+    case 'images':
         $title = "Архив изображений";
         include 'query/my_images.php';
         include 'main/header.php';
@@ -90,14 +124,35 @@ switch ($attributes[act]) {
         include 'main/my_images.php'; 
         break;
     
-    case 'ired':
+    case 'imgred':
         $title = "Редактор изображений";
         include 'query/my_image.php'; 
         include 'main/header.php';
         include 'main/selector.php';
         include 'main/images_red.php';
         break;
+   
+   case 'changeimg': 
+        include 'main/header.php';
+        include 'action/change_image.php';
+        break;
+
+    case 'reg':
+        include 'main/header.php';
+        include 'main/selector.php';
+        break;
     
+    case "new":
+        $title = "Новая презентация";
+        include 'query/presentations.php';
+        include 'query/presentation.php';
+        include 'main/header.php';
+        include 'main/selector.php';
+        include 'main/new_presentation.php';
+        break;
+
+
+
     case 'sred':
         $title = "Редактор звуковых файлов";
         include 'query/my_sound.php'; 
@@ -134,14 +189,7 @@ switch ($attributes[act]) {
         include 'main/selector.php';
         include 'main/my_sounds.php';
         break;
-    
-    case 'atsnd':
-        $title = "Выбор звуковых файлов.";
-        include 'query/my_sounds.php'; 
-        include 'main/header.php';
-        include 'main/selector.php';
-        include 'main/attach_sounds.php';
-        break;
+
     
     case 'sounddel':
         include 'main/header.php';
@@ -151,19 +199,8 @@ switch ($attributes[act]) {
     case 'delsound':
         include 'action/del_sound_everywhere.php';
         break;
-    
-    case 'selimg':
-        $title = "Выбор слайдов.";
-        include 'query/my_images_for_select.php'; 
-        include 'main/header.php';
-        include 'main/selector.php';
-        include 'main/select_images.php';
-        break;
-    
-    case 'attachsound':
-        include 'main/header.php';
-        include 'action/attach_sound.php';
-        break;
+
+
     
     case 'changeimg':
         include 'main/header.php';
@@ -179,11 +216,7 @@ switch ($attributes[act]) {
         include 'main/header.php';
         include 'action/add_image_in_slide.php'; 
         break;
-    
-    case 'setime':
-        include 'main/header.php';
-        include 'action/set_time_slide.php'; 
-        break;
+
     
     case 'select':
         $title = "Добавить элемент.";
@@ -197,11 +230,7 @@ switch ($attributes[act]) {
         include 'main/header.php';
         include 'action/add_element.php';
         break;
-    
-    case 'chgi': 
-        include 'main/header.php';
-        include 'action/change_image.php';
-        break;
+
     
     case 'chcomi':
         include 'action/change_comment_img.php';
@@ -247,11 +276,7 @@ switch ($attributes[act]) {
     case 'sedit':
         include 'action/edit_sound.php';
         break;
-    
-    case 'ename':
-        include 'action/edit_name.php';
-        break;
-    
+
     case 'str':
         include 'action/add_string.php';
         break;
@@ -267,23 +292,13 @@ switch ($attributes[act]) {
     case 'asnd':
         include 'action/add_sound.php';
         break;
-    
-    case 'ddel':
-        include 'action/del_pres_with_img.php';
-        break;
+
     
     case 'del':
         include 'main/header.php';
         include 'main/question.php';
         break;
-    
-    case 'view':
-        include 'query/presentation.php';
-        $title = "$name";
-        include 'main/header.php';
-        include 'main/view.php';
-        break;
-    
+
     case 'name':
         include 'action/add_name.php';
         break;
@@ -291,11 +306,7 @@ switch ($attributes[act]) {
     case "add":
         include 'action/add_presentation.php';
         break;
-    
-    case 'auth':
-        include 'main/header.php';
-        include 'action/authentication.php';
-       break;
+
     
     case "logout":
         include ("action/logout.php");

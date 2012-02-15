@@ -25,16 +25,13 @@
         <input type="text" size="64" required name="comment" value="" onclick="this.select();"/>
         <input type="submit" value="Загрузить изображениe"/>
     </td>
-<!--    <td>
-        &nbsp;&nbsp;
-    </td>-->
 </form>
 </tr>
 <tr>
     <td>
         &nbsp;
     </td>
-    <td colspan="3">
+    <td colspan="2">
         <small>Размер загружаемого файла не должен превышать 1.2МБ</small> 
     </td>
 </tr>

@@ -75,7 +75,6 @@ if (!move_uploaded_file($_FILES['imgfile']['tmp_name'], $imgfile_b)) {
                 
   ?>
 
-<!--<script language="javascript">alert('Изображение успешно загружено');</script>-->
 <form action="index.php?act=ired" method="post">
     <script language="javascript">
     document.write ('<input name="id" type="hidden" value="<?php echo $id;?>"/></form>');

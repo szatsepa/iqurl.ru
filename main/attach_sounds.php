@@ -42,7 +42,7 @@
                     <input type="hidden" name="snd_id" value="<?php echo $value[id];?>"/>
                     <input type="hidden" name="row_id" value="<?php echo $attributes[id];?>"/>
                     <input type="hidden" name="name_id" value="<?php echo $attributes[name_id];?>"/>
-                    <input type="submit" value="Прикрепить" onclick="javascript:attachS('f_<?php echo $value[id];?>')"/>   
+                    <input type="button" value="Прикрепить" onclick="javascript:attachS('f_<?php echo $value[id];?>')"/>   
                 </form>
             </td>
         </tr>
@@ -65,6 +65,6 @@ function attachS(cod) {
     document.write ('<form action="index.php?act=attachsound" method="post"><input type="hidden" name="id" value="'+id+'"/><input name="row" type="hidden" value="'+row+'"/><input name="name_id" type="hidden" value="'+name_id+'"/></form>');
     document.forms[0].submit();
 	
-return;
+return false;
 }
 </script>

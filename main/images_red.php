@@ -15,25 +15,27 @@
 </div>
 <div class="img_red">
     <table border="0">
-        <tr>
-<form enctype="multipart/form-data" action="index.php?act=chgi" method="post">
+<tr>
+<form enctype="multipart/form-data" action="index.php?act=changeimg" method="post">
     <td>
         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
     </td>
-    <td>
+    <td colspan="2">
         
-        <input type="hidden" name="id" value="<?php echo $image[id];?>"/>
+        <input type="hidden" name="name_id" value="<?php echo $attributes[name_id];?>"/>
         <input type="hidden" name="MAX_FILE_SIZE" value="1248575"/>        
         <input name="imgfile" size="50" accept="image/*" type="file" size="20" required/>
-       
-    </td>
-    <td colspan="2">
-        <input type="submit" value="Заменить изображениe"/>&nbsp;&nbsp;
+        <p><small>Название изображения.</small></p>
+        <input type="text" size="64" required name="comment" value="" onclick="this.select();"/>
+        <input type="submit" value="Загрузить изображениe"/>
     </td>
 </form>
 </tr>
 <tr>
-    <td colspan="3">
+    <td>
+        &nbsp;&nbsp;
+    </td>
+    <td colspan="2">
         <small>Размер загружаемого файла не должен превышать 1.2МБ</small> 
     </td>
 </tr>

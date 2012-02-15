@@ -16,11 +16,11 @@ if (!isset ($_SESSION[id])) {
             <td>
                 <form id="13" action="index.php?act=auth" method="post">
             <input id="psw" type="password" name="code" size="18" value="" style='font-size:8pt;'  />
-            <input type="Button" value="Войти" class='submit3' style='color:green'/>
+            <input type="submit" value="Войти" class='submit3' style='color:green'/>
           </form>  
             </td>
             <td>
-                <input type="Button" value="Регистрация" class='submit3' style='color:green' onclick="document.location='http://iqurl.ru/index.php?act=registration'"/>
+                <input type="button" value="Регистрация" class='submit3' style='color:green' onclick="document.location='http://iqurl.ru/index.php?act=registration'"/>
            
             </td>
         </tr>
@@ -57,7 +57,7 @@ if(isset($_SESSION[auth])){
              </form>
             </td>
             <td>
-              <form action="index.php?act=arch" method="post">
+              <form action="index.php?act=images" method="post">
                   <input type="submit" value="Архив изображений" class="zakaz" />
              </form>
                

@@ -6,44 +6,21 @@
 ?>
 <div>
     <table border="0">
-        <?php if($attributes[act] == "arch"){
-            
-            $tmp_arr = $img_pres_array;
-            
-            
-            ?>
-         <tr>
+        
+        <tr>
             <td>
                 
             </td>
             <td colspan="4">
-                <strong>Презентации содержащие изображения</strong>
+                <strong>Мои презентации</strong>
             </td>
         </tr>
-        <?php
-        }else{
-            $tmp_arr = $allpres_array;
-        }
+ <?php 
         
         
-?>
-       
-        
-        <?php 
-        
-        
-        foreach ($tmp_arr as $value) {
+        foreach ($allpres_array as $value) {
             $name = $value[name];
-          if($attributes[act] == "arch"){  
-            $len = strlen($value[name]);
-            
-            if($len < 48){
-                for($i=$len;$i<48;$i++){
-                    $name .= "&nbsp;";
-                }
-            }
-          }
-          ?>
+ ?>
         <tr>
             <td colspan="5">
                 &nbsp;
@@ -67,7 +44,7 @@
                 &nbsp;&nbsp;&nbsp;
             </td>
             <td>
-                <form action="index.php?act=del" method="post">
+                <form action="index.php?act=delpresentation" method="post">
                     <input type="hidden" name="action" value="<?php echo $attributes[act];?>"/>
                     <input type="hidden" name="name_id" value="<?php echo $value[id];?>"/>
                     <input type="submit" value="Удалить"/>

@@ -8,22 +8,25 @@ $id = intval($attributes[name_id]);
 
 $query_string = $attributes[action];
 
-$query = "SELECT p_url FROM presentation WHERE name_id = $id AND type = 1";
-
-$result = mysql_query($query) or die($query);
-
-while ($var = mysql_fetch_assoc($result)){
-        
-//    $url = substr($var[p_url], 7);
-    
-    $url = $document_root.substr($var[p_url], -20);
-    
-    unlink($url);
-}
+if(isset ($attributes[todo]) && $attributes[todo] == "kirdyck"){
 
 mysql_query("DELETE FROM presentation WHERE name_id = $id") or die("DELETE FROM presentation WHERE name_id = $id");
 
-mysql_query("DELETE FROM names WHERE id = $id") or die("DELETE FROM names WHERE id = $id");
-
-header("location:index.php?act=$query_string");
+//header("location:index.php?act=$query_string");
 ?>
+<script language="javascript">
+    document.write ('<form action="index.php?act=<?php echo $query_string;?>" method="post"></form>');
+    document.forms[0].submit();
+</script> 
+<?php
+
+}
+?>
+<script language="javascript">
+if(confirm("Вы правда желаете удалить презентацию.")){
+    document.write ('<form action="index.php?act=delpresentation" method="post"><input type="hidden" name="todo" value="kirdyck"/><input name="action" type="hidden" value="<?php echo $action;?>"/><input name="name_id" type="hidden" value="<?php echo $id;?>"/></form>');
+    document.forms[0].submit();
+}else{
+    document.write ('<form action="index.php?act=pres" method="post"></form>');
+    document.forms[0].submit();
+}</script> 

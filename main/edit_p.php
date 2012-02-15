@@ -3,7 +3,7 @@
 /*
  * created by arcady.1254@gmail.com 4/2/2012
  */
-//print_r($_SERVER);
+
 ?>
 <div>
     <table width="1004" border="0"> 
@@ -66,18 +66,18 @@ foreach ($presentation as $value) {
         <p><input type="text" size="96" name="url" value="<?php echo "$string_out";?>" onclick="this.select();"/>
         <input type="text" size="3" name="times" value="<?php echo $value[time];?>"/>&nbsp;sec.</p>
         <?php if(!$value[sound]){?>
-        <input type="Button" value="Прикрепить звук" onclick="javascript:attachSound('f_<?php echo $slide;?>')"/>
+        <input type="button" value="Прикрепить звук" onclick="javascript:attachSound('f_<?php echo $slide;?>')"/>
         <?php }else{?>
         <p>
             <input type="text" size="96" name="sound" value="<?php echo $snd;?>" onclick="this.select();"/>
         </p>
-        <input type="Button" value="&nbsp;Изменить&nbsp;аудиофайл.&nbsp;" onclick="javascript:attachSound('f_<?php echo $slide;?>');"/>
+        <input type="button" value="&nbsp;Изменить&nbsp;аудиофайл.&nbsp;" onclick="javascript:attachSound('f_<?php echo $slide;?>');"/>
         <?php }?>
-        <input type="Button" value="&nbsp;Изменить&nbsp;слайд.&nbsp;" onclick="javascript:changeImg('f_<?php echo $slide;?>','changeimg');"/>
+        <input type="button" value="&nbsp;Изменить&nbsp;слайд.&nbsp;" onclick="javascript:changeImg('f_<?php echo $slide;?>','changeimg');"/>
         
-        <input type="Button" value="&nbsp;Установить&nbsp;время.&nbsp;" onclick="javascript:document.location.href = (setTime('f_<?php echo $slide;?>'));"/>
+        <input type="button" value="&nbsp;Установить&nbsp;время.&nbsp;" onclick="javascript:document.location.href = (setTime('f_<?php echo $slide;?>'));"/>
                     
-         &nbsp;&nbsp;<input type="Button" value="Удалить слайд." onclick="javascript:delRow('dels','red',<?php echo $slide;?>,<?php echo $attributes[name_id];?>);"/>
+         &nbsp;&nbsp;<input type="button" value="Удалить слайд." onclick="javascript:delRow(<?php echo $value[row];?>,<?php echo $attributes[name_id];?>);"/>
       </form>  
     </td>
 </tr>
@@ -105,8 +105,8 @@ $slide++;
                 <p>
 
                     <input id="nameId" type="hidden" name="name_id" value="<?php echo $attributes[name_id];?>"/>
-                    <input id="add_Link" type="Button" value="&nbsp;Добавить&nbsp;слайд.&nbsp;"  onclick="javascript:addLink('<?php echo $attributes[name_id];?>','addimg');"/>
-                    <input id="change_Priority" type="Button" value="&nbsp;Изменить&nbsp;очередность.&nbsp;"  onclick="javascript:setPriority('<?php echo $count;?>','<?php echo $attributes[name_id];?>');"/>
+                    <input id="add_Link" type="button" value="&nbsp;Добавить&nbsp;слайд.&nbsp;"  onclick="javascript:addLink('<?php echo $attributes[name_id];?>','addimg');"/>
+                    <input id="change_Priority" type="button" value="&nbsp;Изменить&nbsp;очередность.&nbsp;"  onclick="javascript:setPriority('<?php echo $count;?>','<?php echo $attributes[name_id];?>');"/>
                 
                 </p>
 
@@ -114,10 +114,10 @@ $slide++;
     </table>
 </div>
 <script language="JavaScript">
-function delRow(act,action,id,name_id){
-    
+function delRow(id,name_id){
+
     if(confirm("Действительно удалить?")){
-     document.write ('<form action="index.php?act='+act+'" method="post"><input type="hidden" name="id" value="'+id+'"/><input name="action" type="hidden" value="'+action+'"/><input name="name_id" type="hidden" value="'+name_id+'"/></form>');
+     document.write ('<form action="index.php?act=delslide" method="post"><input type="hidden" name="id" value="'+id+'"/><input name="name_id" type="hidden" value="'+name_id+'"/></form>');
     document.forms[0].submit();
 }
  return false;   
@@ -146,7 +146,7 @@ function addLink(id, action){
     
     document.location.href = out_string;
 
- return  false; 
+ return  false;  
 }
 function changeImg(id, action){  
     
@@ -175,13 +175,7 @@ function setTime(id){
     var t = obj.times.value;
     
     var out_string = 'index.php?act=setime&time='+t+'&name_id='+name_id+'&id='+id;
-    
-//    alert(out_string);
-    
-//    document.location.href = out_string;
-    
-//    document.write ('<form action="index.php?act=setime&time='+t+'" method="post"><input type="hidden" name="name_id" value="'+name_id+'"/><input name="id" type="hidden" value="'+id+'"/></form>');
-//    document.forms[0].submit();
+
  return out_string;
     
 }

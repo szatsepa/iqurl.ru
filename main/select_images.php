@@ -79,9 +79,7 @@ function insertLink(cod) {
     
     var action = obj.action.value;
     
-    var out_string = "index.php?act="+action+"&id="+id+"&row="+row+"&name_id"+name_id+"&type="+images;
-	
-    alert(out_string); 
+    var out_string = "index.php?act="+action+"&id="+id+"&row="+row+"&name_id="+name_id+"&type="+images;
     
     document.location.href = out_string;
 	
