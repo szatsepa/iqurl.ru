@@ -35,6 +35,10 @@
         $slide = 1;
 foreach ($presentation as $value) {
     
+//    print_r($value);
+//    
+//    echo "   ;<br/>";
+    
     $count = count($presentation);
     
     $snd = str_replace('"', "'", $value[sound]);
@@ -63,6 +67,7 @@ foreach ($presentation as $value) {
     <form id="f_<?php echo $slide;?>">
         <input type="hidden" name="name_id" value="<?php echo $name_id;?>"/>
         <input type="hidden" name="id" value="<?php echo $value[row];?>"/>
+        <input type="hidden" name="type" value="<?php echo $value[type];?>"/>
         <p><input type="text" size="96" name="url" value="<?php echo "$string_out";?>" onclick="this.select();"/>
         <input type="text" size="3" name="times" value="<?php echo $value[time];?>"/>&nbsp;sec.</p>
         <?php if(!$value[sound]){?>
@@ -158,7 +163,9 @@ function changeImg(id, action){
     
     var action = action;
     
-    var out_string = "index.php?act=selimg&action="+action+"&name_id="+name_id;
+    var type = obj.type.value;
+    
+    var out_string = "index.php?act=selimg&action="+action+"&name_id="+name_id+"&type="+type+"&row="+id;
     
     document.location.href = out_string;
 

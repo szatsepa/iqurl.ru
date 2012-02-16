@@ -18,8 +18,8 @@
       <form enctype="multipart/form-data" action="index.php?act=usnd" method="post">  
         <input type="hidden" name="name_id" value="<?php echo $attributes[name_id];?>"/>
         <input name="soundfile" size="50" accept="multimedia/*.mp3" type="file" required/>
-        <br/><small>Комментарий к аудиофайлу.</small><br/>  
-        <input type="text" required size="64" name="comment" value="Комментарий" onclick="this.select();"/>
+         <p><small>Название аудиофайлa.</small></p> 
+        <input type="text" required size="64" name="comment" value="Введите название" onclick="this.select();"/>
         <input type="submit" value="Загрузить файл"/>
         </form>
     </td>

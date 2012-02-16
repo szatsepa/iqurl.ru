@@ -22,7 +22,7 @@
         <input type="hidden" name="MAX_FILE_SIZE" value="1248575"/>        
         <input name="imgfile" size="50" accept="image/*" type="file" size="20" required/>
         <p><small>Название изображения.</small></p>
-        <input type="text" size="64" required name="comment" value="" onclick="this.select();"/>
+        <input type="text" size="64" required name="comment" value="Введите название" onclick="this.select();"/>
         <input type="submit" value="Загрузить изображениe"/>
     </td>
 </form>

@@ -37,9 +37,7 @@ if (!move_uploaded_file($_FILES['imgfile']['tmp_name'], $imgfile_b)) {
     ?>
 <script language="javascript">alert('Ошибка при копировании файла');</script>
       <?php 
-//      $javascript = "javascript:alert('Ошибка при копировании файла');";
-           
-        } else {
+ } else {
             
             $flnm = time().'.';
             
@@ -68,8 +66,8 @@ if (!move_uploaded_file($_FILES['imgfile']['tmp_name'], $imgfile_b)) {
            if($insid != 0){
             
             ?>
-<!--<script language="javascript">alert('Изображение успешно загружено');</script>-->
-<form action="index.php?act=arch" method="post">
+
+<form action="index.php?act=images" method="post">
     <script language="javascript">
     document.write ('<input name="id" type="hidden" value="<?php echo $insid;?>"/></form>');
     document.forms[0].submit();

@@ -57,19 +57,22 @@
      
         ?>
          <tr>
-            <td colspan="3">
+             <td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+            <td colspan="2">
                 <p align="left">
                     <strong>
                         Добавить слайд.
                     </strong>
                 </p>
                 <p>
-                <form action="index.php?act=alnk" method="post">
+                <form action="index.php?act=addlnk" method="post">
                     <input type="hidden" name="user_id" value="<?php echo $_SESSION[id];?>"/>
                     <input type="text" required size="64" name="url" value=""/>
                     <input type="submit" value="&nbsp;Добавить&nbsp; &nbsp;адрес&nbsp;"/>
                     <p><small>Вставте в это поле URL вашего слайда.</small></p>
-                    <input type="text" required size="64" name="comment" value="Kомментарий" onclick="this.select();"/>
+                    <input type="text" required size="64" name="comment" value="Введите название" onclick="this.select();"/>
                    
                 </form>
                 </p>

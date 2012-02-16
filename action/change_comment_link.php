@@ -5,8 +5,6 @@
  */
 $id = intval($attributes[id]);
 
-//mysql_real_escape_string()
-
 $comment = $attributes[comment];
 
 $comment = str_replace("'", '"', $comment);

@@ -8,14 +8,14 @@
 
 $name_id = intval($attributes[name_id]);
 
-$query_string = $attributes[action]."&name_id=".$name_id."&id=".$id;
+$query_string = $attributes[action];
 
 ?>
 <script language="javascript">
     
-    if(confirm("Вы действительно хотите удалить файл?")){
+    if(confirm("Вы действительно хотите удалить ссылку?")){
       
-      document.location = "index.php?act=delsound&action=<?php echo $query_string;?>";
+      document.location = "index.php?act=dellink&action=<?php echo $query_string;?>&id=<?php echo $id;?>";
       
     }else{
         

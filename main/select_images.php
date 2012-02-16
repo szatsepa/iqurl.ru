@@ -50,7 +50,8 @@ $rows = 0;
                     <input type="hidden" name="snd_id" value="<?php echo $value[id];?>"/>
                     <input type="hidden" name="action" value="<?php echo $attributes[action];?>"/>
                     <input type="hidden" name="images" value="<?php echo $value[type];?>"/>
-                    <input type="hidden" name="row_id" value="<?php echo $attributes[id];?>"/>
+                    <input type="hidden" name="type" value="<?php echo $value[type];?>"/>
+                    <input type="hidden" name="row_id" value="<?php echo $attributes[row];?>"/>
                     <input type="hidden" name="name_id" value="<?php echo $attributes[name_id];?>"/>
                     <input type="Button" value="Прикрепить" onclick="javascript:insertLink('f_<?php echo $rows;?>')"/>   
                 </form>
@@ -79,7 +80,7 @@ function insertLink(cod) {
     
     var action = obj.action.value;
     
-    var out_string = "index.php?act="+action+"&id="+id+"&row="+row+"&name_id="+name_id+"&type="+images;
+   var out_string = "index.php?act="+action+"&id="+id+"&row="+row+"&name_id="+name_id+"&type="+images;
     
     document.location.href = out_string;
 	

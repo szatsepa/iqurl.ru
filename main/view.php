@@ -80,7 +80,7 @@ if($presentation[$key][sound]){
 <?php }?>
 <div>
     <?php if($presentation[$key][lnk_link] && $presentation[$key][type] == 0){?>
-     <iframe src="<?php echo $presentation[$key][lnk_link];?>" width="100%" height="1050" align="center">
+     <iframe src="<?php echo $presentation[$key][lnk_link];?>" width="100%" align="center">
     Ваш браузер не поддерживает плавающие фреймы!
  </iframe>
  <?php }else{ ?>

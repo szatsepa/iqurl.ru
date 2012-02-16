@@ -16,7 +16,7 @@
 <div class="img_red">
     <table border="0">
 <tr>
-<form enctype="multipart/form-data" action="index.php?act=changeimg" method="post">
+<form enctype="multipart/form-data" action="index.php?act=changeimage" method="post">
     <td>
         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
     </td>
@@ -25,8 +25,9 @@
         <input type="hidden" name="name_id" value="<?php echo $attributes[name_id];?>"/>
         <input type="hidden" name="MAX_FILE_SIZE" value="1248575"/>        
         <input name="imgfile" size="50" accept="image/*" type="file" size="20" required/>
+        <input type="hidden" name="id" value="<?php echo $image[id];?>"/>
         <p><small>Название изображения.</small></p>
-        <input type="text" size="64" required name="comment" value="" onclick="this.select();"/>
+        <input type="text" size="64" required name="comment" value="<?php echo $image[comment];?>" onclick="this.select();"/>
         <input type="submit" value="Загрузить изображениe"/>
     </td>
 </form>
@@ -39,26 +40,29 @@
         <small>Размер загружаемого файла не должен превышать 1.2МБ</small> 
     </td>
 </tr>
-        <tr>
-<form action="index.php?act=chcomi" method="post">
+<!--        <tr>
+
     <td>
         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
     </td>
     <td>
+     <form action="index.php?act=chcomi" method="post">   
         
-        <input type="hidden" name="id" value="<?php echo $image[id];?>"/>
-        <input name="comment" size="62" type="text" value="<?php echo $image[comment];?>" required/>
-       
+        <input name="comment" size="64" type="text" value="<?php echo $image[comment];?>" required/>
+       <input type="submit" value="Изменить комментарий"/>&nbsp;&nbsp;
+     </form>  
     </td>
     <td colspan="2">
-        <input type="submit" value="Изменить комментарий"/>&nbsp;&nbsp;
+        
     </td>
-</form>
-</tr>
-<tr>
-    <td colspan="3">
+
+</tr>-->
+<!--<tr> <td>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+    </td>
+    <td colspan="2">
         <small>Комментарий к изображению.</small> 
     </td>
-</tr>
+</tr>-->
     </table>
 </div>

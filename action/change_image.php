@@ -14,6 +14,8 @@ $server = $_SERVER[SERVER_NAME];
 
 $size = intval($attributes[MAX_FILE_SIZE]);
 
+$comment = quote_smart($attributes[comment]);
+
 $query = "SELECT name FROM images WHERE id = $id";
 
 $result = mysql_query($query) or die($query);
@@ -65,7 +67,7 @@ if (!move_uploaded_file($_FILES['imgfile']['tmp_name'], $imgfile_b)) {
             // Переименуем загруженный файл
             rename ($imgfile_b, $new_imgfile);
             
-            $query = "UPDATE images SET name = $url WHERE id = $id";
+            $query = "UPDATE images SET name = $url, comment = $comment WHERE id = $id";
             
             $result = mysql_query($query) or die($query);
             
@@ -75,7 +77,7 @@ if (!move_uploaded_file($_FILES['imgfile']['tmp_name'], $imgfile_b)) {
                 
   ?>
 
-<form action="index.php?act=ired" method="post">
+<form action="index.php?act=imgred" method="post">
     <script language="javascript">
     document.write ('<input name="id" type="hidden" value="<?php echo $id;?>"/></form>');
     document.forms[0].submit();

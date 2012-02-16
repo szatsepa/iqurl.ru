@@ -8,7 +8,7 @@ $images_array = array();
 
 $user_id = intval($_SESSION[id]);
 
-$query = "SELECT * FROM images WHERE user_id = $user_id";
+$query = "SELECT * FROM images WHERE user_id = $user_id ORDER BY id";
 
 $result = mysql_query($query) or die($query);
 

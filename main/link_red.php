@@ -16,7 +16,7 @@
 <div class="img_red">
     <table border="0">
         <tr>
-<form action="index.php?act=chgl" method="post">
+<form action="index.php?act=chglink" method="post">
     <td>
         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
     </td>
@@ -24,7 +24,7 @@
         
         <input type="hidden" name="id" value="<?php echo $site[id];?>"/>
                 
-        <input name="url" size="62" type="text" value="<?php echo $site[name];?>" required/>
+        <input name="name" size="62" type="text" value="<?php echo $site[name];?>" required/>
        
     </td>
     <td colspan="2">

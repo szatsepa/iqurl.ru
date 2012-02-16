@@ -39,7 +39,7 @@ if(unlink($name)){
     
     $result = mysql_query($query) or die($query);
     
-    $query = "DELETE FROM `presentation` WHERE `p_url` = $id";
+    $query = "DELETE FROM `presentation` WHERE `p_url` = $id AND type = 1";
     
     $result = mysql_query($query) or die($query);
 }

@@ -16,7 +16,7 @@ $name = $row[0];
 
 unset ($row);  
 
-$query = "SELECT p.id AS row, p.priority,p.time, 
+$query = "SELECT p.id AS row, p.priority,p.time, p.type, 
 (SELECT im.id FROM `images` AS im LEFT JOIN `presentation` AS p   ON p.p_url = im.id WHERE row = p.id AND p.type = 1) AS img_id, 
 (SELECT im.name FROM `images` AS im LEFT JOIN `presentation` AS p   ON p.p_url = im.id WHERE row = p.id AND p.type = 1) AS img_link, 
 (SELECT im.comment FROM `images` AS im LEFT JOIN `presentation` AS p   ON p.p_url = im.id WHERE row = p.id AND p.type = 1) AS img, 
@@ -32,13 +32,40 @@ ORDER BY p.priority";
 
 $result = mysql_query($query) or die($query);
 
+$tmp_presentation = array();
+
 $presentation = array();
+
+//$priority_array = array();
 
 while ($var = mysql_fetch_assoc($result)){
 
-    array_push($presentation, $var);
+    array_push($tmp_presentation, $var);
+    
+//    array_push($priority_array, $var[priority]);
 }
 
 mysql_free_result($result);
 
+//$tmp_arr = array_unique($priority_array);
+
+$priority = 1;
+
+//if(count($priority_array) != count($tmp_arr)){}
+    foreach ($tmp_presentation as $key => $value) {
+        
+        $value[priority] = $priority;
+        
+        array_push($presentation, $value);
+        
+         $priority++ ;
+    }
+   
+
+//
+//unset ($tmp_arr);
+//
+//unset ($priority_array);
+
+unset ($tmp_presentation);
 ?>
