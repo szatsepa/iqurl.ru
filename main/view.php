@@ -12,13 +12,24 @@ if(isset ($attributes[frame]))$key = intval($attributes[frame]);
 if($key == count($presentation)){
     
     $key = 0;
+    
+    if($checked == 'checked'){
 ?> 
+<script language="javascript">
+
+   document.location = "index.php?act=view&frame=0&name_id=<?php echo $attributes[name_id];?>";
+
+</script>
+  <?php  
+     }  else {
+         ?>
 <script language="javascript">
 
     window.close();
 
 </script>
-  <?php  
+        <?php
+     }
     }
 
 $this_sound = "http://".$_SERVER[SERVER_NAME]."/sound/".$presentation[$key][filename];
@@ -40,7 +51,7 @@ if($cnt == 0){
 <script>
 var min = 0;
 var sec = <?php echo $presentation[$key][time];?>;
-var timerid;
+//var checked = "0";
 function timer()
 {
   sec--; /* уменьшаем на одну секунду */
@@ -80,7 +91,7 @@ if($presentation[$key][sound]){
 <?php }?>
 <div>
     <?php if($presentation[$key][lnk_link] && $presentation[$key][type] == 0){?>
-     <iframe src="<?php echo $presentation[$key][lnk_link];?>" width="100%" align="center">
+     <iframe src="<?php echo $presentation[$key][lnk_link];?>" width="100%" height="1050" align="center">
     Ваш браузер не поддерживает плавающие фреймы!
  </iframe>
  <?php }else{ ?>

@@ -46,9 +46,11 @@ $comment = str_replace('"', "'", $sound[comment]);
     </td>
 </form>
 </tr>
-<tr>
-    <td colspan="3">
-        <small>Формат загружаемого файла должен быть исключительно mp3</small> 
+<tr><td>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+    </td>
+    <td colspan="2">
+        <p><small>Формат загружаемого файла должен быть исключительно mp3</small></p> 
     </td>
 </tr>
  <tr>
@@ -68,8 +70,11 @@ $comment = str_replace('"', "'", $sound[comment]);
 </form>
 </tr>
 <tr>
-    <td colspan="3">
-        <small>Комментарий к звуковому файлу.</small> 
+    <td>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+    </td>
+    <td colspan="2">
+        <p><small>Комментарий к звуковому файлу.</small> </p>
     </td>
 </tr>
     </table>

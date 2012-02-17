@@ -21,6 +21,10 @@ class User{
         $row = mysql_fetch_assoc($result);
         
         $this->data = $row; 
+        
+        unset($row);
+        
+        mysql_free_result($result);
     }
  
 }

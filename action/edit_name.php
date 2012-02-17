@@ -8,7 +8,9 @@ $name_id = intval($attributes[name_id]);
 
 $name = quote_smart($attributes[name]);
 
-$query = "UPDATE names SET name = $name WHERE id = $name_id";
+$repeat = intval($attributes[repeat]);
+
+$query = "UPDATE `names` SET `name` = $name, `repeat` = $repeat WHERE `id` = $name_id";
 
 mysql_query($query) or die($query);
 

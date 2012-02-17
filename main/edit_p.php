@@ -20,6 +20,7 @@
             <form action="index.php?act=ename" method="post">
             <td colspan="2">
                 <input type="hidden" name="name_id" value="<?php echo $attributes[name_id];?>"/>
+                Повторять<input type="checkbox" name="repeat" value="1" <?php echo $checked;?>/>&nbsp;&nbsp;
                 <input type="text" size="72" name="name" value="<?php echo $name;?>"/>
                 &nbsp;&nbsp;<input type="submit" value="Сохранить изменения"/>
             </td>

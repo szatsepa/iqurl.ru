@@ -6,13 +6,17 @@
 
 $name_id = intval($attributes[name_id]);
 
-$query = "SELECT name FROM names WHERE id = $name_id";
+$query = "SELECT `name`, `repeat` FROM `names` WHERE `id` = $name_id";
 
 $result = mysql_query($query) or die($query);
 
 $row = mysql_fetch_row($result);
 
 $name = $row[0];
+
+$checked = '';
+
+if($row[1] == 1)$checked = 'checked';
 
 unset ($row);  
 
