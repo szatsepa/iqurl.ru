@@ -6,14 +6,16 @@
 
 $key = 0;
 
+$cnt = count($presentation);
 
 if(isset ($attributes[frame]))$key = intval($attributes[frame]);
 
-if($key == count($presentation)){
+if($key == $cnt){
     
     $key = 0;
-    
-    if($checked == 'checked'){
+
+    if($repeat != 0){
+        
 ?> 
 <script language="javascript">
 
@@ -22,25 +24,22 @@ if($key == count($presentation)){
 </script>
   <?php  
      }  else {
-         ?>
-<script language="javascript">
+         
+        
+echo '<script language="javascript">window.close();</script>';
 
-    window.close();
-
-</script>
-        <?php
      }
     }
 
-$this_sound = "http://".$_SERVER[SERVER_NAME]."/sound/".$presentation[$key][filename];
+$this_sound = "./sound/".$presentation[$key][filename];
 
-$cnt = count($presentation);
-  
+
+
 if($cnt == 0){
     ?>
 <script language="javascript">
     if(confirm("ПРЕЗЕНТАЦИЯ НЕ ГОТОВА К ПОКАЗУ.\n                  ВЕРНУТЬСЯ?")){
-        document.close();
+        window.close();
     }
 </script>
 
@@ -49,6 +48,7 @@ if($cnt == 0){
 
 ?>
 <script>
+    
 var min = 0;
 var sec = <?php echo $presentation[$key][time];?>;
 //var checked = "0";
@@ -76,18 +76,17 @@ timerid = setInterval(timer,1000); /* запускаем таймер */
 <?php 
 if($presentation[$key][sound]){  
 ?>
-<object width="290" height="24" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0">
-    <param name="allowScriptAccess" value="sameDomain" />
-    <param name="movie" value="http://www.yapfiles.ru/files/148503/player.swf" />
-    <param name="wmode" value="opaque" />
-    <param name="bgcolor" value="#FFFFFF" />
-    <param name="scale" value="showall" />
-    <param name="quality" value="autohigh" />
-    <param name="align" value="l" />
-    <param name="FlashVars" value="autostart=yes&loop=no&soundFile=<?php echo $this_sound;?>" />
-    <embed width="290" height="24" swliveconnect="default" src="http://www.yapfiles.ru/files/148503/player.swf" wmode="opaque" bgcolor="#FFFFFF" scale="showall" quality="autohigh" loop="false" menu="false" play="false" name="" base="" salign="tl" FlashVars="autostart=yes&loop=no&soundFile=<?php echo $this_sound;?>" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
-    </embed>
-</object>
+<br/>
+<div id="players">
+    
+        <object type="application/x-shockwave-flash" data="./flash/audio_player.swf" id="audioplayer1" height="24" width="288">  
+        <param name="movie" value="./flash/audio_player.swf"></param>  
+        <param name="FlashVars" value="playerID=1&autostart=yes&loop=no&bg=0xffffff&loader=0xcccccc&border=0xcccccc&text=0x8c8c8c&leftbg=0xcccccc&lefticon=0xffffff&righticon=0xffffff&slider=0xcccccc&rightbg=0xcccccc&soundFile=<?php echo $this_sound;?>"></param>  
+        <param name="quality" value="high"></param>  
+        <param name="menu" value="false"></param>  
+        <param name="wmode" value="transparent"></param>  
+    </object>  
+</div>
 <?php }?>
 <div>
     <?php if($presentation[$key][lnk_link] && $presentation[$key][type] == 0){?>
@@ -95,7 +94,7 @@ if($presentation[$key][sound]){
     Ваш браузер не поддерживает плавающие фреймы!
  </iframe>
  <?php }else{ ?>
- <p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo $presentation[$key][img];?></strong></p>
+ <center><p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo $presentation[$key][img];?></strong></p></center>
     <img src="<?php echo $presentation[$key][img_link];?>" width="100%" align="center" alt="image"/>
  <?php }?>
 </div>

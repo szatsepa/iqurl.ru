@@ -16,7 +16,12 @@ $name = $row[0];
 
 $checked = '';
 
-if($row[1] == 1)$checked = 'checked';
+$repeat = $row[1];
+
+if($repeat == 1)$checked = 'checked';
+
+//print_r($row);
+//echo "<br/>";
 
 unset ($row);  
 

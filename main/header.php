@@ -16,7 +16,8 @@ header('Content-Type: text/html; charset=utf-8');
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen, projection" />
-        <script type="text/javascript" src="/js/AC_Run.js"></script>
+        <link rel="stylesheet" href="/css/styles_p.css" type="text/css" media="screen, projection" />
         <script type="text/javascript" src="/js/scripts.js"></script>
+<!--        <bgsound src="http://www.iqurl.ru/sound/snd1329050297.mp3"/>-->
  </head>
     <body onload="">
