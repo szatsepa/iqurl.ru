@@ -3,6 +3,7 @@
 /*
  * created by arcady.1254@gmail.com 6/2/2012
  */
+$comment = str_replace('"', "'", $image[comment]);
 ?>
 <br/>
 <br/>
@@ -16,21 +17,23 @@
 <div class="img_red">
     <table border="0">
 <tr>
-<form enctype="multipart/form-data" action="index.php?act=changeimage" method="post">
+
     <td>
         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
     </td>
     <td colspan="2">
-        
+  <form enctype="multipart/form-data" action="index.php?act=changeimage" method="post">      
         <input type="hidden" name="name_id" value="<?php echo $attributes[name_id];?>"/>
         <input type="hidden" name="MAX_FILE_SIZE" value="1248575"/>        
         <input name="imgfile" size="50" accept="image/*" type="file" size="20" required/>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <input type="image" name="prelo" id="pld" style="display: none;" src="images/circle.gif" disabled/> 
         <input type="hidden" name="id" value="<?php echo $image[id];?>"/>
         <p><small>Название изображения.</small></p>
-        <input type="text" size="64" required name="comment" value="<?php echo $image[comment];?>" onclick="this.select();"/>
-        <input type="submit" value="Загрузить изображениe"/>
+        <input type="text" size="64" required name="comment" value="<?php echo $comment;?>" onclick="this.select();"/>
+        <input type="submit" value="Загрузить изображениe" onclick="javascript:preload('pld');"/>
+  </form>
     </td>
-</form>
+
 </tr>
 <tr>
     <td>

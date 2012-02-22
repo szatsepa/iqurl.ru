@@ -4,6 +4,7 @@
  * created by arcady.1254@gmail.com 6/2/2012
  * 
  */
+
 ?>
 <div>
     <table width="86%" border="0">
@@ -30,6 +31,8 @@
                 }
             }
           }
+          
+          $comment = str_replace('"', "'", $value[comment]);
           ?>
         <tr>
             <td colspan="2">
@@ -45,7 +48,7 @@
            
             <td align="left"> 
                 <form action="index.php?act=imgred" method="post">
-                       <input id="img_<?php echo $value[id];?>" type="text" size="64" name="url" value="<?php echo $value[comment];?>"/>
+                       <input id="img_<?php echo $value[id];?>" type="text" size="64" name="url" value="<?php echo $comment;?>"/>
                        <input type="hidden" name="id" value="<?php echo $value[id];?>"/>
                        <input type="submit" value="Редактировать"/>
                        <input type="button" value="Удалить" onclick="dokument:location='index.php?act=imgdel&action=<?php echo $attributes[act];?>&id=<?php echo $value[id];?>'"/>

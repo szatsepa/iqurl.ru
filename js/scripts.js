@@ -10,3 +10,11 @@ function attachData(cod, str) {
 return;
 }
 
+function preload(id){
+    
+        var obj = document.getElementById(id);
+
+        obj.style.display = "inline-block";
+        
+}   
+
