@@ -45,23 +45,17 @@ $tmp_presentation = array();
 
 $presentation = array();
 
-//$priority_array = array();
-
 while ($var = mysql_fetch_assoc($result)){
 
     array_push($tmp_presentation, $var);
-    
-//    array_push($priority_array, $var[priority]);
+   
 }
 
 mysql_free_result($result);
 
-//$tmp_arr = array_unique($priority_array);
-
 $priority = 1;
 
-//if(count($priority_array) != count($tmp_arr)){}
-    foreach ($tmp_presentation as $key => $value) {
+foreach ($tmp_presentation as $key => $value) {
         
         $value[priority] = $priority;
         
@@ -70,11 +64,6 @@ $priority = 1;
          $priority++ ;
     }
    
-
-//
-//unset ($tmp_arr);
-//
-//unset ($priority_array);
 
 unset ($tmp_presentation);
 ?>

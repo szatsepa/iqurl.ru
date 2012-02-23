@@ -65,7 +65,8 @@ switch ($attributes[act]) {
         include 'query/presentation.php';
         $title = "$name";
         include 'main/header.php';
-        include 'main/view.php';
+        include 'query/manipulation.php';
+//        include 'main/view.php';
         break;
      
     case 'red':

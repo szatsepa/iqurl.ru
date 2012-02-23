@@ -53,7 +53,7 @@
 </div>
 <script language="JavaScript">
 function attachS(cod) {
-    
+
     var obj = document.getElementById(cod);
     
     var name_id = obj.name_id.value;

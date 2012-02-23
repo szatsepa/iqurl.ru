@@ -48,7 +48,7 @@ if($cnt == 0){
 
 ?>
 <script>
-    
+  
 var min = 0;
 var sec = <?php echo $presentation[$key][time];?>;
 //var checked = "0";
@@ -88,9 +88,9 @@ if($presentation[$key][sound]){
     </object>  -->
 </div>
 <?php }?>
-<div>
+<div id="div_id">
     <?php if($presentation[$key][lnk_link] && $presentation[$key][type] == 0){?>
-     <iframe src="<?php echo $presentation[$key][lnk_link];?>" width="100%" height="1050" align="center">
+     <iframe id="frm_content" src="<?php echo $presentation[$key][lnk_link];?>" width="100%" height="1050" align="center">
     Ваш браузер не поддерживает плавающие фреймы!
  </iframe>
  <?php }else{ ?>
@@ -98,3 +98,11 @@ if($presentation[$key][sound]){
     <img src="<?php echo $presentation[$key][img_link];?>" width="100%" align="center" alt="image"/>
  <?php }?>
 </div>
+<script type="text/javascript">
+
+function ContentPaste(ContentText){
+var el = document.getElementById('div_id');
+el.innerHTML = ContentText;                             
+}
+
+</script>
