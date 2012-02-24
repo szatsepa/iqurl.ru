@@ -1,108 +1,134 @@
 <?php
 
 /*
- * created by arcady.1254@gmail.com 3/2/2012
+ * created by arcady.1254@gmail.com 23/2/2012
  */
 
-$key = 0;
-
-$cnt = count($presentation);
-
-if(isset ($attributes[frame]))$key = intval($attributes[frame]);
-
-if($key == $cnt){
-    
-    $key = 0;
-
-    if($repeat != 0){
-        
-?> 
-<script language="javascript">
-
-   document.location = "index.php?act=view&frame=0&name_id=<?php echo $attributes[name_id];?>";
-
-</script>
-  <?php  
-     }  else {
-         
-        
-echo '<script language="javascript">window.close();</script>';
-
-     }
-    }
-
-$this_sound = "./sound/".$presentation[$key][filename];
-
-
-
-if($cnt == 0){
-    ?>
-<script language="javascript">
-    if(confirm("ПРЕЗЕНТАЦИЯ НЕ ГОТОВА К ПОКАЗУ.\n                  ВЕРНУТЬСЯ?")){
-        window.close();
-    }
-</script>
-
-    <?php
-}
-
 ?>
-<script>
-  
-var min = 0;
-var sec = <?php echo $presentation[$key][time];?>;
-//var checked = "0";
-function timer()
-{
-  sec--; /* уменьшаем на одну секунду */
-  if (sec<0) /* следующая минута */
-  {
-    sec = 59;
-    min--;
-  }
-if (min==0 && sec==0)
-  {
-    clearInterval(timerid); /* останавливаем таймер */
+<script type="text/javascript">
+    
+    var pres_array = new Array();
+    
+    var el = new Object();
+    
+    var step = 0;
+    
+    var repeat = <?php echo $repeat;?>;
+    
+    var all_sound = "<?php echo $sound_0;?>";
+    
+    var pr_snd_yes = false;
+    
+ <?php 
+    foreach ($presentation as $value) {
+        ?>
+         var presentation = new Object();
+         <?php
+        foreach ($value as $key => $var) {
+         ?>   
+             presentation['<?php echo $key;?>'] = '<?php echo $var;?>';
+             
+<?php
+         }
+         ?>
+             pres_array.push(presentation);
+             <?php
+    }
+    ?>
+        
+var sec = get_string_content(pres_array, step)['time'];
 
-document.location = "index.php?act=view&frame=<?php echo ($key+1);?>&name_id=<?php echo $attributes[name_id];?>";
+var time_long = get_string_content(pres_array, step)['time'];
 
-   
-  }
-}
- 
 timerid = setInterval(timer,1000); /* запускаем таймер */
 
-</script>
-<?php 
-if($presentation[$key][sound]){  
-?>
-<br/>
-<div id="players">
- <object type="application/x-shockwave-flash" data="./flash/dewplayer-vol.swf?mp3=<?php echo $this_sound;?>&autostart=yes" width="240" height="20" id="dewplayer-vol"><param name="wmode" value="transparent" /><param name="movie" value="./flash/dewplayer-vol.swf?mp3=<?php echo $this_sound;?>&autostart=yes" /></object>   
-<!--        <object type="application/x-shockwave-flash" data="./flash/audio_player.swf" id="audioplayer1" height="24" width="288">  
-        <param name="movie" value="./flash/audio_player.swf"></param>  
-        <param name="FlashVars" value="playerID=1&autostart=yes&loop=no&bg=0xffffff&loader=0xcccccc&border=0xcccccc&text=0x8c8c8c&leftbg=0xcccccc&lefticon=0xffffff&righticon=0xffffff&slider=0xcccccc&rightbg=0xcccccc&soundFile=<?php echo $this_sound;?>"></param>  
-        <param name="quality" value="high"></param>  
-        <param name="menu" value="false"></param>  
-        <param name="wmode" value="transparent"></param>  
-    </object>  -->
-</div>
-<?php }?>
-<div id="div_id">
-    <?php if($presentation[$key][lnk_link] && $presentation[$key][type] == 0){?>
-     <iframe id="frm_content" src="<?php echo $presentation[$key][lnk_link];?>" width="100%" height="1050" align="center">
-    Ваш браузер не поддерживает плавающие фреймы!
- </iframe>
- <?php }else{ ?>
- <center><p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo $presentation[$key][img];?></strong></p></center>
-    <img src="<?php echo $presentation[$key][img_link];?>" width="100%" align="center" alt="image"/>
- <?php }?>
-</div>
-<script type="text/javascript">
+function timer()  
+{
+ 
+ if(!pr_snd_yes){
+     pr_snd_yes = true;
+     if(all_sound){
+         
+           el = document.getElementById("presentation_snd");
+           el.innerHTML = '<object type="application/x-shockwave-flash" data="./flash/dewplayer-vol.swf?mp3=./sound/'+all_sound+'&autostart=yes" width="240" height="20" id="dewplayer-vol"><param name="wmode" value="transparent" /><param name="movie" value="./flash/dewplayer-vol.swf?mp3=./sound/'+all_sound+'&autostart=yes" /></object>';
+    }
 
-function ContentPaste(ContentText){
-var el = document.getElementById('div_id');
-el.innerHTML = ContentText;                             
+  }
+ if(sec < 0){ 
+     if(repeat == 1){
+         step = 0;
+time_long =  sec = get_string_content(pres_array, step)['time'];
+ 
+     }else{
+         window.close();
+//        clearInterval(timerid); /* останавливаем таймер */
+     }
+   
+}  
+
+el = document.getElementById('seconds');
+
+el.innerHTML= sec;
+
+if(sec == time_long){
+    
+el = document.getElementById('div_id');
+    
+el.innerHTML =  get_string_content(pres_array, step)['image'];
+
+el = document.getElementById('sound');
+        
+el.innerHTML = get_string_content(pres_array, step)['sound'];
 }
 
-</script>
+sec--; /* уменьшаем на одну секунду */  
+
+if (sec == 0)
+  { step++;
+     time_long =  sec = get_string_content(pres_array, step)['time'];
+    }
+       
+
+}
+function get_string_content(arr, pos){
+
+    var pres_obj = new Object();
+     
+     var img = arr[pos]['img_link'];
+     
+     var img_comment = arr[pos]['img'];
+
+     var lnk = arr[pos]['lnk_link'];
+
+    var type = arr[pos]['type'];
+    
+    var snd_name = arr[pos]['filename'];
+    
+    pres_obj['image'] = '<iframe id="content" src="'+lnk+'" width="100%" height="1050" align="center">'+lnk+'</iframe>';
+
+    if(type == 1){
+    
+        pres_obj['image'] = '<div><center><p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>'+img_comment+'</strong></p></center></div><img src="'+img+'" width="100%" align="center" alt="image"/>';
+     }
+    
+    if(snd_name){
+        pres_obj['sound'] = '<object type="application/x-shockwave-flash" data="./flash/dewplayer-vol.swf?mp3=./sound/'+snd_name+'&autostart=yes" width="240" height="20" id="dewplayer-vol"><param name="wmode" value="transparent" /><param name="movie" value="./flash/dewplayer-vol.swf?mp3=./sound/'+snd_name+'&autostart=yes" /></object>';
+    }else{
+        pres_obj['sound'] = '';
+    }
+    
+    pres_obj['time'] =  arr[pos]['time']; 
+    
+ return pres_obj;
+}
+</script> 
+<div class="hoh">
+<div class="seconds">
+    <center><span id="seconds"></span></center> 
+</div>
+    <div id="presentation_snd"></div>
+    <div id="sound"></div>
+</div>
+<div id="div_id">
+    
+</div>

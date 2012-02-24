@@ -118,3 +118,29 @@ input.submit { padding:2px 5px;
 input.list{
     font-weight: bold;
 }
+div.seconds{
+    position: relative;
+    float: left; 
+    font-size: 16px;
+    font-weight: bolder;
+    padding: 3px 7px 3px 2px;
+    width: 64px;
+/*    outline: 1px solid greenyellow;*/
+}
+#presentation_snd{
+    position: relative;
+    float: left;
+    width: 248px;
+}
+#sound{
+    position: relative;
+    float: left;
+}
+div.hoh{
+    position: relative;
+    width: 100%;
+    height: 26px;
+}
+#div_id{
+     
+}
