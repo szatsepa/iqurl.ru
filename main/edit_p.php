@@ -17,12 +17,22 @@
             </td>
         </tr> 
         <tr> 
-            <form action="index.php?act=ename" method="post">
+            <form action="index.php?act=ename" method="post" id="presentation">
             <td colspan="2">
                 <input type="hidden" name="name_id" value="<?php echo $attributes[name_id];?>"/>
                 Повторять<input type="checkbox" name="repeat" value="1" <?php echo $checked;?>/>&nbsp;&nbsp;
                 <input type="text" size="72" name="name" value="<?php echo $name;?>"/>
                 &nbsp;&nbsp;<input type="submit" value="Сохранить изменения"/>
+                 <?php if(!$sound_0){?>
+                <p> &nbsp; </p>
+        <input type="button" value="Прикрепить аудиофайл" onclick="javascript:attachSound_0('presentation');"/>
+     
+ <?php }else{?>
+        <p>
+            <input type="text" size="96" name="sound" value="<?php echo $comm_snd;?>" onclick="this.select();"/>
+        </p>
+        <input type="button" value="&nbsp;Изменить&nbsp;аудиофайл.&nbsp;" onclick="javascript:attachSound_0('presentation');"/>
+        <?php }?>
             </td>
              </form>
         </tr>
@@ -72,7 +82,7 @@ foreach ($presentation as $value) {
         <p><input type="text" size="96" name="url" value="<?php echo "$string_out";?>" onclick="this.select();"/>
         <input type="text" size="3" name="times" value="<?php echo $value[time];?>"/>&nbsp;sec.</p>
         <?php if(!$value[sound]){?>
-        <input type="button" value="Прикрепить звук" onclick="javascript:attachSound('f_<?php echo $slide;?>')"/>
+        <input type="button" value="Прикрепить аудиофайл" onclick="javascript:attachSound('f_<?php echo $slide;?>')"/>
         <?php }else{?>
         <p>
             <input type="text" size="96" name="sound" value="<?php echo $snd;?>" onclick="this.select();"/>
@@ -138,6 +148,18 @@ function attachSound(cod) {
     var id = obj.id.value;
     
     document.write ('<form action="index.php?act=atsnd" method="post"><input type="hidden" name="name_id" value="'+name_id+'"/><input name="id" type="hidden" value="'+id+'"/></form>');
+    document.forms[0].submit();
+	
+return false;
+}
+function attachSound_0(cod){
+    var obj = document.getElementById(cod);
+    
+    var name_id = obj.name_id.value;
+    
+    var id = obj.id.value;
+    
+    document.write ('<form action="index.php?act=atsndpes" method="post"><input type="hidden" name="name_id" value="'+name_id+'"/></form>');
     document.forms[0].submit();
 	
 return false;

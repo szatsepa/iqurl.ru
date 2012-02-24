@@ -121,9 +121,22 @@ switch ($attributes[act]) {
         include 'main/attach_sounds.php';
         break;
     
+    case 'atsndpes':
+        $title = "Выбор звуковых файлов.";
+        include 'query/my_sounds.php'; 
+        include 'main/header.php';
+        include 'main/selector.php';
+        include 'main/attach_sounds_pres.php';
+        break;
+    
     case 'attachsound':
         include 'main/header.php';
         include 'action/attach_sound.php';
+        break;
+    
+    case 'attachsoundpres':
+        include 'main/header.php';
+        include 'action/attach_sound_pres.php';
         break;
         
     case 'setime':

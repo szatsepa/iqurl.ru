@@ -6,22 +6,26 @@
 
 $name_id = intval($attributes[name_id]);
 
-$query = "SELECT `name`, `repeat` FROM `names` WHERE `id` = $name_id";
+$query = "SELECT `name`, `repeat`, (SELECT snd.name FROM `sounds` AS snd, `names` AS p WHERE p.sound = snd.id AND p.id = $name_id) AS sound, (SELECT snd.comment FROM `sounds` AS snd, `names` AS p WHERE p.sound = snd.id AND p.id = $name_id) AS comment  FROM `names` WHERE `id` = $name_id";
 
 $result = mysql_query($query) or die($query);
 
-$row = mysql_fetch_row($result);
+$row = mysql_fetch_assoc($result);
 
-$name = $row[0];
+$name = $row['name'];
 
 $checked = '';
 
-$repeat = $row[1];
+$repeat = $row['repeat'];
+
+$sound_0 = $row['sound'];
+
+$comm_snd = $row[comment];
 
 if($repeat == 1)$checked = 'checked';
 
 //print_r($row);
-//echo "<br/>";
+//echo "S $sound_0<br/>";
 
 unset ($row);  
 
