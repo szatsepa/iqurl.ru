@@ -130,17 +130,40 @@ div.seconds{
 #presentation_snd{
     position: relative;
     float: left;
-    width: 248px;
+    margin-top: 4px;
+    width: 264px;
+/*    outline: 1px solid blue;*/
 }
 #sound{
     position: relative;
     float: left;
+    margin-top: 4px;
+    width: 248px;
+/*    outline: 1px solid gold;*/
 }
 div.hoh{
     position: relative;
     width: 100%;
-    height: 26px;
+    height: 28px;
+/*    outline: 1px solid red;*/
+}
+#fast{
+   position: relative;
+   float: left;
+   width: 52px;
+   height: 28px;
+   padding-left: 18px;
 }
 #div_id{
-     
+   position: relative;
+   float: left;
+   width: 100%;
+   margin-top: 4px;
+}
+div.hohee{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 18px;
+/*    background-color: #cccccc;*/
 }

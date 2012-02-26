@@ -75,6 +75,11 @@ switch ($attributes[act]) {
         include 'main/selector.php';
         include 'main/edit_p.php'; 
         break;
+    
+    case 'fast':
+//        include 'main/header.php';
+        include 'action/set_fast_btn.php';
+        break;
         
     case 'changepriority':
         include 'main/header.php';

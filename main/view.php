@@ -71,14 +71,24 @@ el = document.getElementById('seconds');
 el.innerHTML= sec;
 
 if(sec == time_long){
+
+var this_obj = get_string_content(pres_array, step);
     
 el = document.getElementById('div_id');
     
-el.innerHTML =  get_string_content(pres_array, step)['image'];
+el.innerHTML =  this_obj['image'];
 
 el = document.getElementById('sound');
         
-el.innerHTML = get_string_content(pres_array, step)['sound'];
+el.innerHTML = this_obj['sound'];
+
+//alert(this_obj['fast']);
+
+if(this_obj['fast']){
+    
+   el = document.getElementById('fast');  
+   
+   el.innerHTML = this_obj['fast'];
 }
 
 sec--; /* уменьшаем на одну секунду */  
@@ -89,6 +99,8 @@ if (sec == 0)
     }
        
 
+}
+return false;
 }
 function get_string_content(arr, pos){
 
@@ -104,6 +116,8 @@ function get_string_content(arr, pos){
     
     var snd_name = arr[pos]['filename'];
     
+    var fust = arr[pos]['fast'];
+    
     pres_obj['image'] = '<iframe id="content" src="'+lnk+'" width="100%" height="1050" align="center">'+lnk+'</iframe>';
 
     if(type == 1){
@@ -118,16 +132,22 @@ function get_string_content(arr, pos){
     }
     
     pres_obj['time'] =  arr[pos]['time']; 
+    if(arr[pos]['fast'] != 0){
+        pres_obj['fast'] = '<input type="image" src="./images/quick_btn.png" width="27" height="27" align="center" alt="button"/>';
+    }else{
+        pres_obj['fast']=null;
+    }
+    
     
  return pres_obj;
 }
 </script> 
+<div class="hohee"></div>
 <div class="hoh">
-<div class="seconds">
-    <center><span id="seconds"></span></center> 
-</div>
-    <div id="presentation_snd"></div>
-    <div id="sound"></div>
+<div class="seconds"> <center><span id="seconds"></span></center></div>   
+<div id="fast"></div>     
+<div id="presentation_snd"></div>   
+<div id="sound"></div>      
 </div>
 <div id="div_id">
     

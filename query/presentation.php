@@ -29,7 +29,7 @@ if($repeat == 1)$checked = 'checked';
 
 unset ($row);  
 
-$query = "SELECT p.id AS row, p.priority,p.time, p.type, 
+$query = "SELECT p.id AS row, p.priority,p.time, p.type, p.fast_btn AS fast, 
 (SELECT im.id FROM `images` AS im LEFT JOIN `presentation` AS p   ON p.p_url = im.id WHERE row = p.id AND p.type = 1) AS img_id, 
 (SELECT im.name FROM `images` AS im LEFT JOIN `presentation` AS p   ON p.p_url = im.id WHERE row = p.id AND p.type = 1) AS img_link, 
 (SELECT im.comment FROM `images` AS im LEFT JOIN `presentation` AS p   ON p.p_url = im.id WHERE row = p.id AND p.type = 1) AS img, 

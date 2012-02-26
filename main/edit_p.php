@@ -80,18 +80,22 @@ foreach ($presentation as $value) {
         <input type="hidden" name="id" value="<?php echo $value[row];?>"/>
         <input type="hidden" name="type" value="<?php echo $value[type];?>"/>
         <p><input type="text" size="96" name="url" value="<?php echo "$string_out";?>" onclick="this.select();"/>
-        <input type="text" size="3" name="times" value="<?php echo $value[time];?>"/>&nbsp;sec.</p>
+            <input type="text" size="3" name="times" value="<?php echo $value[time];?>"/>&nbsp;sec.</p>
         <?php if(!$value[sound]){?>
         <input type="button" value="Прикрепить аудиофайл" onclick="javascript:attachSound('f_<?php echo $slide;?>')"/>
         <?php }else{?>
         <p>
             <input type="text" size="96" name="sound" value="<?php echo $snd;?>" onclick="this.select();"/>
+            &nbsp;
+            <input type="checkbox" name="fast" value="1" <?php if($value[fast])echo "checked";?> onchange="javascript:fast_btn('f_<?php echo $slide;?>');"/>&nbsp;Пропускать.
         </p>
         <input type="button" value="&nbsp;Изменить&nbsp;аудиофайл.&nbsp;" onclick="javascript:attachSound('f_<?php echo $slide;?>');"/>
         <?php }?>
         <input type="button" value="&nbsp;Изменить&nbsp;слайд.&nbsp;" onclick="javascript:changeImg('f_<?php echo $slide;?>','changeimg');"/>
         
         <input type="button" value="&nbsp;Установить&nbsp;время.&nbsp;" onclick="javascript:document.location.href = (setTime('f_<?php echo $slide;?>'));"/>
+        
+<!--        <input type="button" value="&nbsp;Установить&nbsp;кнопку.&nbsp;" onclick="javascript:fast_btn('f_<?php echo $slide;?>');"/>-->
                     
          &nbsp;&nbsp;<input type="button" value="Удалить слайд." onclick="javascript:delRow(<?php echo $value[row];?>,<?php echo $attributes[name_id];?>);"/>
       </form>  
@@ -235,5 +239,27 @@ function setPriority(count, name_id){
     document.location.href = out_string;
 
     return false;
+}
+function fast_btn(id){
+    
+    var obj = document.getElementById(id);
+    
+    var id_row = obj.id.value;
+    
+    var name_id = obj.name_id.value;
+    
+    var fast = 0;
+    
+    if(obj.fast.checked){
+        
+        fast = obj.fast.value;
+        
+        
+    }
+//   window.open();
+   
+   document.write("<form action='index.php?act=fast' method='post'><input type='hidden' name='name_id' value='"+name_id+"'/><input type='hidden' name='id' value='"+id_row+"'/><input type='hidden' name='fast' value='"+fast+"'/></form>");
+   
+   document.forms[0].submit();
 }
 </script>
