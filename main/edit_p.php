@@ -75,19 +75,21 @@ foreach ($presentation as $value) {
 
 <tr>
 <td>
-    <form id="f_<?php echo $slide;?>">
+    <form id="f_<?php echo $slide;?>"> 
         <input type="hidden" name="name_id" value="<?php echo $name_id;?>"/>
         <input type="hidden" name="id" value="<?php echo $value[row];?>"/>
         <input type="hidden" name="type" value="<?php echo $value[type];?>"/>
-        <p><input type="text" size="96" name="url" value="<?php echo "$string_out";?>" onclick="this.select();"/>
-            <input type="text" size="3" name="times" value="<?php echo $value[time];?>"/>&nbsp;sec.</p>
+        <p><input type="text" size="84" name="url" value="<?php echo "$string_out";?>" onclick="this.select();"/>
+            <input type="text" size="3" name="times" value="<?php echo $value[time];?>"/>&nbsp;sec.
+        &nbsp;
+            <input type="checkbox" name="fast" value="1" <?php if($value[fast])echo "checked";?> onchange="javascript:fast_btn('f_<?php echo $slide;?>');"/>&nbsp;Пропускать.
+        </p>
         <?php if(!$value[sound]){?>
         <input type="button" value="Прикрепить аудиофайл" onclick="javascript:attachSound('f_<?php echo $slide;?>')"/>
         <?php }else{?>
         <p>
-            <input type="text" size="96" name="sound" value="<?php echo $snd;?>" onclick="this.select();"/>
-            &nbsp;
-            <input type="checkbox" name="fast" value="1" <?php if($value[fast])echo "checked";?> onchange="javascript:fast_btn('f_<?php echo $slide;?>');"/>&nbsp;Пропускать.
+            <input type="text" size="84" name="sound" value="<?php echo $snd;?>" onclick="this.select();"/>
+            
         </p>
         <input type="button" value="&nbsp;Изменить&nbsp;аудиофайл.&nbsp;" onclick="javascript:attachSound('f_<?php echo $slide;?>');"/>
         <?php }?>
