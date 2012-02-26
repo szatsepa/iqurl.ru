@@ -153,6 +153,7 @@ div.hoh{
    width: 52px;
    height: 28px;
    padding-left: 18px;
+   display: none;
 }
 #div_id{
    position: relative;
