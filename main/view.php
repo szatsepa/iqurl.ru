@@ -156,7 +156,7 @@ var nstp = step_on;
 var nsc = get_string_content(pres_array, nstp)['time'];
 _start(nstp,true);
 }
-</script> 
+</script>
 <div class="hohee"></div>
 <div class="hoh">
 <div class="seconds"> <center><span id="seconds"></span></center></div>   
