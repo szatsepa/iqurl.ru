@@ -1,18 +1,18 @@
 <?php
 $headers = "MIME-Version: 1.0\r\n";
-$headers .= "Content-type: text/html; charset={$_GET['db_carset']}";
+$headers .= "Content-type: text/html; charset=utf-8";
 
-mysql_connect($_GET['db_server'],$_GET['db_login'],$_GET['db_pwd']);
+mysql_connect($_POST['db_server'],$_POST['db_login'],$_POST['db_pwd']);
 
-mysql_select_db($_GET['db_name']);
+mysql_select_db($_POST['db_name']);
 //
-mysql_query ("SET NAMES {$_GET['db_charset']}");
+mysql_query ("SET NAMES {$_POST['db_charset']}");
 
 $out = mysql_errno();
 
 if (mysql_errno() <> 0) exit("ERROR ".$out);
 
-$query = " SHOW TABLES FROM {$_GET['db_name']} WHERE Tables_in_{$_GET['db_name']} LIKE '%user%' OR  Tables_in_{$_GET['db_name']} LIKE '%custom%'";
+$query = " SHOW TABLES FROM {$_POST['db_name']} WHERE Tables_in_{$_POST['db_name']} LIKE '%user%' OR  Tables_in_{$_POST['db_name']} LIKE '%custom%'";
 
 $result = mysql_query($query);
 
@@ -34,7 +34,7 @@ while ($row = mysql_fetch_row($result)){
         
         foreach ($us_row as $key => $value) {
             
-            if($_GET['db_charset'] == 'cp1251'){
+            if($_POST['db_charset'] == 'cp1251'){
                $response .= '{"'.$key.'":"'.cp1251_to_utf8($value, NULL).'"}'; 
             }else{
                $response .= '{"'.$key.'":"'.$value.'"}';
