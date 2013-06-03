@@ -8,7 +8,7 @@ class User{
     
     var $data;
     
-    function User(){
+    function _constract(){
         $this->data = array();
     }
     

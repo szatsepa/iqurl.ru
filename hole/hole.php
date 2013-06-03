@@ -5,62 +5,120 @@ $headers .= "Content-type: text/html; charset=utf-8";
 mysql_connect($_POST['addr'],$_POST['login'],$_POST['password']);
 
 mysql_select_db($_POST['db_name']);
-//
+
 mysql_query ("SET NAMES {$_POST['charset']}");
 
 $out = mysql_errno();
 
 if (mysql_errno() <> 0) exit("ERROR ".$out);
 
-$query = " SHOW TABLES FROM {$_POST['db_name']} WHERE Tables_in_{$_POST['db_name']} LIKE '%user%' OR  Tables_in_{$_POST['db_name']} LIKE '%custom%'";
+$response = NULL;
 
-$result = mysql_query($query);
+if(!isset($_POST['tablename'])){
+    $response = getDBStructure();
+}elseif (isset ($_POST['tablename'])) {
+    $response = getDBUsers();
+}
 
-$response = '{"'.$_POST['db_name'].'":{';
+echo $response;
 
-while ($row = mysql_fetch_row($result)){
+function getDBUsers(){
     
-    $num_rows = 0;
+    $response = '{"'.$_POST['db_name'].'":{"'.$_POST['tablename'].'":[';
     
-    $response .= '"'.$row[0].'":[';
+    $query = "SELECT COUNT(*) FROM {$_POST['tablename']}"; 
     
-    $us_query = "SHOW COLUMNS FROM `{$row[0]}`";
+    $result = mysql_query($query);
     
-    $us_result = mysql_query($us_query);
+    $count = mysql_result($result, 0);
     
-    while ($us_row = mysql_fetch_row($us_result)){
+    $step = ceil($count/1000);
+    
+    for($i=0;$i<$step;$i++){
         
-//        $response .= $num_rows.': "';
+        $start = ($i*1000);
         
-        if($_POST['charset'] == 'cp1251'){
-           $response .= '"'.cp1251_to_utf8($us_row[0], NULL); 
-        }else{
-           $response .= '"'.$us_row[0];
+        $query = "SELECT * FROM {$_POST['tablename']} LIMIT {$start}, 1000";
+        
+        $result = mysql_query($query);
+        
+        $numrow = 0;
+        
+        while ($row = mysql_fetch_assoc($result)){
+          
+            $response .= '{';
+            
+            foreach ($row as $key => $value) {
+                $response .= '"'.$key.'":"'.$value.'",';
+            }
+            
+            $response = substr($response, 0, strlen($response)-1);
+            
+            $response .= '},';
+            
+            $numrow++;
         }
-        
-        
-        $response .= '",';
-      
-        $num_rows++;
-    }
+    }    
+    
+//    $response .= '"count":"'.$count.'"';
+       
     $response = substr($response, 0, strlen($response)-1);
-    $response .= '],';
+
+    $response .= ']}}';
     
-    mysql_free_result($us_result);
-    
-//    $response = substr($response, 0, strlen($response)-2);
-    
-//    
+    return $response;
     
 }
 
-$response = substr($response, 0, strlen($response)-1);
+function getDBStructure(){
+    
+    $query = " SHOW TABLES FROM {$_POST['db_name']} WHERE Tables_in_{$_POST['db_name']} LIKE '%user%' OR  Tables_in_{$_POST['db_name']} LIKE '%custom%'";
 
-$response .= '}}';
+    $result = mysql_query($query);
 
-mysql_free_result($result);
+    $response = '{"'.$_POST['db_name'].'":{';
 
-echo $response;
+    while ($row = mysql_fetch_row($result)){
+
+        $num_rows = 0;
+
+        $response .= '"'.$row[0].'":[';
+
+        $us_query = "SHOW COLUMNS FROM `{$row[0]}`";
+
+        $us_result = mysql_query($us_query);
+
+        while ($us_row = mysql_fetch_row($us_result)){
+
+    //        $response .= $num_rows.': "';
+
+            if($_POST['charset'] == 'cp1251'){
+               $response .= '"'.cp1251_to_utf8($us_row[0], NULL); 
+            }else{
+               $response .= '"'.$us_row[0];
+            }
+
+
+            $response .= '",';
+
+            $num_rows++;
+        }
+        $response = substr($response, 0, strlen($response)-1);
+        $response .= '],';
+
+        mysql_free_result($us_result);
+        
+        
+    }
+
+    $response = substr($response, 0, strlen($response)-1);
+
+    $response .= '}}';
+
+    mysql_free_result($result);
+    
+    return $response;
+}
 
 function cp1251_to_utf8 ($txt, $utf)  {
     $in_arr = array (
